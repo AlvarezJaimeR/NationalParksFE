@@ -4,8 +4,11 @@ import axios from 'axios';
 export const newAuth = (user) => dispatch => {
     console.log('Hit newAuth');
     axios.post("http://localhost:5000/api/users/", user)
-        .then(auth => dispatch({
+        .then(auth => {
+            localStorage.setItem("token", auth.headers["x-auth-token"]);
+            console.log(auth);
+            dispatch({
             type: NEW_AUTH,
             payload: auth.data
-    }));
+    })});
 }
