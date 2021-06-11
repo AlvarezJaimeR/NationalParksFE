@@ -1,16 +1,19 @@
-import { connect } from "react-redux";
 import NavBar from "../NavBar/NavBar";
 import UseForm from "../UseForm/UseForm";
-import PropTypes from "prop-types";
 import { newAuth } from "../../actions/authActions";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 
 const RegisterPage = () => {
 	const { errors, values, handleChange, handleSubmit } = UseForm(register);
+	const dispatch = useDispatch();
 
 	function register() {
 		console.log("Hit Submit Button");
 		const { confirmPassword, ...newUser } = values;
-		newAuth(newUser);
+		console.log(values);
+		console.log(newUser);
+		dispatch(newAuth(newUser));
 	}
 
 	return (
@@ -97,8 +100,4 @@ const RegisterPage = () => {
 	);
 };
 
-RegisterPage.propTypes = {
-	newAuth: PropTypes.func.isRequired,
-};
-
-export default connect(null, { newAuth })(RegisterPage);
+export default RegisterPage;

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const newAuth = (user) => dispatch => {
     console.log('Hit newAuth');
-    axios.get("http://localhost:5000/api/users/", user)
+    axios.post("http://localhost:5000/api/users/", user)
         .then(auth => dispatch({
             type: NEW_AUTH,
             payload: auth.data
