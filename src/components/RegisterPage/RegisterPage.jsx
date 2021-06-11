@@ -1,6 +1,7 @@
 import NavBar from "../NavBar/NavBar";
 import UseForm from "../UseForm/UseForm";
 import { newUser } from "../../actions/usersActions";
+import { newAuth } from "../../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 

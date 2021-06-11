@@ -9,6 +9,6 @@ export const newAuth = (user) => dispatch => {
             console.log(auth);
             dispatch({
             type: NEW_AUTH,
-            payload: auth.data
+            payload: auth
     })});
 }

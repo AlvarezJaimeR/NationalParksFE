@@ -19,6 +19,6 @@ export const newUser = (user) => dispatch => {
             console.log(user);
             dispatch({
             type: NEW_USER,
-            payload: user.data
+            payload: user
     })});
 }
