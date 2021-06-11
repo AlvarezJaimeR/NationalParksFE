@@ -1,6 +1,6 @@
 import NavBar from "../NavBar/NavBar";
 import UseForm from "../UseForm/UseForm";
-import { newAuth } from "../../actions/authActions";
+import { newUser } from "../../actions/usersActions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 
@@ -10,10 +10,10 @@ const RegisterPage = () => {
 
 	function register() {
 		console.log("Hit Submit Button");
-		const { confirmPassword, ...newUser } = values;
+		const { confirmPassword, ...users } = values;
 		console.log(values);
-		console.log(newUser);
-		dispatch(newAuth(newUser));
+		console.log(users);
+		dispatch(newUser(users));
 	}
 
 	return (

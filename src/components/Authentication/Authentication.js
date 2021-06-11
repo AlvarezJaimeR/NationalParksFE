@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../actions/getUsersActions";
+import { getUsers } from "../../actions/usersActions";
 
 const Authentication = () => {
     const [loggedInUser, setLoggedInUser] = useState();
