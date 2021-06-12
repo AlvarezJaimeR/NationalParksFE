@@ -2,28 +2,35 @@ import NavBar from "../NavBar/NavBar";
 import UseForm from "../UseForm/UseForm";
 import { newUser } from "../../actions/usersActions";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./RegisterPage.css";
 
 const RegisterPage = () => {
-	const { errors, values, handleChange, handleSubmit } = UseForm(register);
+	const { errors, values, handleChange, handleSubmit, setValues } =
+		UseForm(register);
 	const [selectedItem, setSelectedItem] = useState(0);
 	const dispatch = useDispatch();
 	const imgNames = ["B", "C", "G", "L", "S"];
-	/*     .map((name, index) => {
-		return (
-			<img
-				key={index}
-				alt="animal"
-				src={process.env.PUBLIC_URL + `images/${name}.png`}
-			/>
-		);
-	}); */
+
+	useEffect(() => {
+		const random = Math.floor(Math.random() * imgNames.length);
+		setValues((values) => ({
+			...values,
+			icon: `http://localhost:3000/images/${imgNames[random]}.png`,
+		}));
+	}, []);
 
 	function highlightImage(name, index) {
 		console.log(name);
 		console.log("clicked index:", index);
 		setSelectedItem(index);
+		console.log(selectedItem);
+		console.log(values);
+		setValues((values) => ({
+			...values,
+			icon: name.target.src,
+		}));
+		console.log(values);
 	}
 
 	function register() {
@@ -111,10 +118,11 @@ const RegisterPage = () => {
 						<div>
 							<div>
 								<span>Pick an Icon!</span>
+
 								{imgNames.map((name, index) => (
 									<div
 										key={index}
-										onClick={() => highlightImage(name, index)}
+										onClick={(e) => highlightImage(e, name, index)}
 										className={selectedItem === name.id ? "hover" : null}>
 										<img
 											src={process.env.PUBLIC_URL + `images/${name}.png`}></img>

@@ -46,7 +46,7 @@ const UseForm = (callback) => {
 	const clearValues = () => {
 		setValues({});
 	};
-	return { errors, values, handleChange, handleSubmit, clearValues };
+	return { errors, values, handleChange, handleSubmit, clearValues, setValues };
 };
 
 export default UseForm;
