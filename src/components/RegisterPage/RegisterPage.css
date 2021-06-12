@@ -1,0 +1,18 @@
+img {
+	height: 50px;
+}
+
+.center {
+	margin: auto;
+}
+#register-container {
+	margin-top: 15%;
+}
+
+.full-box {
+	padding: 5px;
+	width: 500px;
+	border-style: groove;
+	border-radius: 10px;
+	border-color: lightblue;
+}

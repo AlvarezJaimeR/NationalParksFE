@@ -3,10 +3,28 @@ import UseForm from "../UseForm/UseForm";
 import { newUser } from "../../actions/usersActions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
+import "./RegisterPage.css";
 
 const RegisterPage = () => {
 	const { errors, values, handleChange, handleSubmit } = UseForm(register);
+	const [selectedItem, setSelectedItem] = useState(0);
 	const dispatch = useDispatch();
+	const imgNames = ["B", "C", "G", "L", "S"];
+	/*     .map((name, index) => {
+		return (
+			<img
+				key={index}
+				alt="animal"
+				src={process.env.PUBLIC_URL + `images/${name}.png`}
+			/>
+		);
+	}); */
+
+	function highlightImage(name, index) {
+		console.log(name);
+		console.log("clicked index:", index);
+		setSelectedItem(index);
+	}
 
 	function register() {
 		console.log("Hit Submit Button");
@@ -89,6 +107,20 @@ const RegisterPage = () => {
 							<p className="errors">
 								{errors.confirmPassword ? `${errors.confirmPassword}` : null}
 							</p>
+						</div>
+						<div>
+							<div>
+								<span>Pick an Icon!</span>
+								{imgNames.map((name, index) => (
+									<div
+										key={index}
+										onClick={() => highlightImage(name, index)}
+										className={selectedItem === name.id ? "hover" : null}>
+										<img
+											src={process.env.PUBLIC_URL + `images/${name}.png`}></img>
+									</div>
+								))}
+							</div>
 						</div>
 						<button type="submit" className="btn btn-primary">
 							Submit
