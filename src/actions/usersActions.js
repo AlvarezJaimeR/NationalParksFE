@@ -17,6 +17,8 @@ export const newUser = (user) => dispatch => {
     axios.post("http://localhost:5000/api/users/", user)
         .then(user => {
             console.log(user);
+            localStorage.setItem("token", user.headers["x-auth-token"]);
+            console.log(user);
             dispatch({
             type: NEW_USER,
             payload: user

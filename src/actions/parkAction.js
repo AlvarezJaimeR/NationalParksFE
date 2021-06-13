@@ -11,3 +11,6 @@ export const getPark = () => dispatch => {
     })});
 }
 
+export const displayPark = () => dispatch => {
+    
+}

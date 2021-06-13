@@ -45,8 +45,6 @@ const RegisterPage = () => {
 	return (
 		<div>
 			<NavBar tabActive="n/a" />
-			{console.log(login.authentication)}
-			{console.log(logout.authentication)}
 			<div className="center" id="register-container">
 				<div className="center full-box">
 					<h1 className="text-center">User Registration</h1>
@@ -121,7 +119,6 @@ const RegisterPage = () => {
 						<div>
 							<div>
 								<span>Pick an Icon!</span>
-
 								{imgNames.map((name, index) => (
 									<div
 										key={index}

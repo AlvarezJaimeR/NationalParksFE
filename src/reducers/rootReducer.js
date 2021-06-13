@@ -9,5 +9,5 @@ export default combineReducers({
     newUser: usersReducer,
     logout: usersReducer,
     login: usersReducer,
-    getPark: parkReducer
+    park: parkReducer
 });

@@ -9,7 +9,7 @@ export default function(state = initialState, action) {
         case GET_PARK:
             return {
                 ...state,
-                items: action.payload
+                items: action.payload.data
             }
             default:
                 return state;

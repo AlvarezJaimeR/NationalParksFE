@@ -5,16 +5,19 @@ import React, { useState } from "react";
 import UseForm from "../UseForm/UseForm";
 import { newUser, login, logout } from "../../actions/usersActions";
 import "./LoginPage.css";
+import { useHistory } from "react-router-dom";
 
 const LoginPage = () => {
 	const { values, handleChange, handleSubmit } = UseForm(loggedIn);
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	function loggedIn() {
 		console.log("hit login button");
 		console.log(values);
 		dispatch(newAuth(values));
 		dispatch(login());
+		history.push("/allParks");
 	}
 
 	return (
