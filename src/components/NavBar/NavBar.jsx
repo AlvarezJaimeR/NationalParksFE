@@ -1,11 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
+import react, { useState } from "react";
+
 const NavBar = (props) => {
-	function logout() {
+	const dispatch = useDispatch();
+
+	function logoutButton() {
 		try {
 			alert("Come back soon!");
 		} catch (error) {
 			console.log(error);
 		}
 	}
+
 	return (
 		<nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
 			<div className="container-fluid">
@@ -50,7 +56,7 @@ const NavBar = (props) => {
 								} 
                                 `}
 								aria-current={props.tabActive === "1" ? "page" : ""}
-								href="/myProfilePage">
+								href="/allParks">
 								All Parks
 							</a>
 						</li>
@@ -87,11 +93,11 @@ const NavBar = (props) => {
 							</a>
 						</>
 
-						{/* 							<button
-								className="btn btn-outline-danger"
-								onClick={() => logout()}>
-								Logoff
-							</button> */}
+						<button
+							className="btn btn-outline-danger"
+							onClick={() => logoutButton()}>
+							Logoff
+						</button>
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,14 @@
+.center {
+	margin: auto;
+}
+#login-container {
+	margin-top: 15%;
+}
+
+.small-box {
+	padding: 5px;
+	width: 500px;
+	border-style: groove;
+	border-radius: 10px;
+	border-color: lightblue;
+}

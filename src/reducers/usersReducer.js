@@ -1,7 +1,8 @@
-import { GET_USERS, NEW_USER} from '../actions/type';
+import { GET_USERS, NEW_USER, LOG_OUT, LOG_IN} from '../actions/type';
 
 const initialState = {
-    items: []
+    items: [],
+    authentication: false
 }
 
 export default function(state = initialState, action){
@@ -14,8 +15,20 @@ export default function(state = initialState, action){
         case NEW_USER:
             return {
                 ...state, //previous state
-                items: [action.payload, ...state.items] //array of comment objects being pulled from the API
+                items: [action.payload, ...state.items], //array of comment objects being pulled from the API
             };  
+        case LOG_IN:
+            return {
+                ...state,
+                items: [action.payload, ...state.items],
+                authentication: true
+            }
+        case LOG_OUT:
+            return {
+                ...state,
+                items: [],
+                authentication: false
+            }
         default: 
             return state;
     }

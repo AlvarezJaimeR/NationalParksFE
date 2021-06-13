@@ -3,6 +3,7 @@ import { newAuth } from "../../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import UseForm from "../UseForm/UseForm";
+import "./LoginPage.css";
 
 const LoginPage = () => {
 	const { values, handleChange, handleSubmit } = UseForm(login);

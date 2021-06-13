@@ -5,6 +5,7 @@ import Home from "./Home/Home";
 import LoginPage from "./LoginPage/LoginPage";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import Authentication from "./Authentication/Authentication";
+import Main from "./Main/Main";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 					<Route path="/auth" exact component={Authentication} />
 					<Route path="/login" component={LoginPage} />
 					<Route path="/register" component={RegisterPage} />
+					<Route path="/allParks" component={Main} />
 					{/* <Route path="/otherUserProfilePage" component={OtherUserProfilePage} /> */}
 					{/* <Route path="/searchUserPage" component={SearchUserPage} /> */}
 				</Switch>
