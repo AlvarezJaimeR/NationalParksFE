@@ -5,9 +5,10 @@ import parkReducer from "./parkReducer";
 
 export default combineReducers({
     auth: authReducer,
-    getUsers: usersReducer,
+    users:usersReducer,
+/*     getUsers: usersReducer,
     newUser: usersReducer,
     logout: usersReducer,
-    login: usersReducer,
+    login: usersReducer, */
     park: parkReducer
 });
