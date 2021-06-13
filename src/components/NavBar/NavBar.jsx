@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { newUser, login, logout } from "../../actions/usersActions";
 import react, { useState } from "react";
 
 const NavBar = (props) => {
@@ -7,6 +8,7 @@ const NavBar = (props) => {
 	function logoutButton() {
 		try {
 			alert("Come back soon!");
+			dispatch(logout());
 		} catch (error) {
 			console.log(error);
 		}

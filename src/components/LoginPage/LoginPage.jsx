@@ -3,16 +3,18 @@ import { newAuth } from "../../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import UseForm from "../UseForm/UseForm";
+import { newUser, login, logout } from "../../actions/usersActions";
 import "./LoginPage.css";
 
 const LoginPage = () => {
-	const { values, handleChange, handleSubmit } = UseForm(login);
+	const { values, handleChange, handleSubmit } = UseForm(loggedIn);
 	const dispatch = useDispatch();
 
-	function login() {
+	function loggedIn() {
 		console.log("hit login button");
 		console.log(values);
 		dispatch(newAuth(values));
+		dispatch(login());
 	}
 
 	return (

@@ -1,6 +1,6 @@
 import NavBar from "../NavBar/NavBar";
 import UseForm from "../UseForm/UseForm";
-import { newUser } from "../../actions/usersActions";
+import { newUser, login, logout } from "../../actions/usersActions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import "./RegisterPage.css";
@@ -39,11 +39,14 @@ const RegisterPage = () => {
 		console.log(values);
 		console.log(users);
 		dispatch(newUser(users));
+		dispatch(login());
 	}
 
 	return (
 		<div>
 			<NavBar tabActive="n/a" />
+			{console.log(login.authentication)}
+			{console.log(logout.authentication)}
 			<div className="center" id="register-container">
 				<div className="center full-box">
 					<h1 className="text-center">User Registration</h1>
