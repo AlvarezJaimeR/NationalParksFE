@@ -7,6 +7,7 @@ import RegisterPage from "./RegisterPage/RegisterPage";
 import Authentication from "./Authentication/Authentication";
 import Main from "./Main/Main";
 import Travelers from "./Travelers/Travelers";
+import SpecificPark from "./SpecificPark/SpecificPark.jsx";
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 					<Route path="/register" component={RegisterPage} />
 					<Route path="/allParks" component={Main} />
 					<Route path="/allTravelers" component={Travelers} />
+					<Route path="/specificPark" component={SpecificPark} />
 					{/* <Route path="/otherUserProfilePage" component={OtherUserProfilePage} /> */}
 					{/* <Route path="/searchUserPage" component={SearchUserPage} /> */}
 				</Switch>
