@@ -4,6 +4,7 @@ import react, { useState } from "react";
 
 const NavBar = (props) => {
 	const dispatch = useDispatch();
+	const user = useSelector((state) => state.users);
 
 	function logoutButton() {
 		try {
@@ -16,6 +17,7 @@ const NavBar = (props) => {
 
 	return (
 		<nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+			{console.log(user)}
 			<div className="container-fluid">
 				<a className="navbar-brand" href="/">
 					<img

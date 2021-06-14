@@ -4,7 +4,7 @@ const initialState = {
     items: []
 }
 
-export default function(state = initialState, action) {
+const parkReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_PARK:
             return {
@@ -19,3 +19,4 @@ export default function(state = initialState, action) {
                 return state;
     }
 }
+export default parkReducer;

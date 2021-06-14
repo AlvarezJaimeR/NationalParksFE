@@ -5,7 +5,7 @@ const initialState = {
     authentication: false
 }
 
-export default function(state = initialState, action){
+const userReducer = (state=initialState, action) => {
     switch(action.type){ 
         case GET_USERS:
             return {
@@ -20,16 +20,18 @@ export default function(state = initialState, action){
         case LOG_IN:
             return {
                 ...state,
-                items: [action.payload, ...state.items],
+                items: [action.payload],
                 authentication: true
             }
         case LOG_OUT:
             return {
                 ...state,
-                items: [],
+                items: [action.payload],
                 authentication: false
             }
         default: 
             return state;
     }
 }
+
+export default userReducer;
