@@ -23,14 +23,16 @@ class Main extends Component {
 	mapNationalParks() {
 		console.log("park items", this.props.parks);
 		return (
-			<div className="row">
-				<a className="col" href="/specificPark">
+			<div className="container">
+				<div className="row">
 					{this.props.parks.map((park, index) => (
-						<div key={index}>
-							<p>{park.name}</p>
+						<div key={index} className="card" style={{ width: "11em" }}>
+							<a href="/specificPark" className="card-body">
+								{park.name}
+							</a>
 						</div>
 					))}
-				</a>
+				</div>
 			</div>
 		);
 	}
