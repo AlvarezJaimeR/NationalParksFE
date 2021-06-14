@@ -7,3 +7,4 @@ export const LOG_IN = 'LOG_IN';
 export const GET_PARK = "GET_PARK";
 export const FILTER_NATIONAL_PARK = "FILTER_NATIONAL_PARK";
 export const GET_POST = "GET_POST";
+export const NEW_POST = "NEW_POST";
