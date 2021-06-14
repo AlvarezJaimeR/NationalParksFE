@@ -11,6 +11,8 @@ const NavBar = (props) => {
 			console.log("logout button!");
 			localStorage.removeItem("token");
 			//alert("Come back soon!");
+			userHasAuthenticated(false);
+			history.push("/");
 		} catch (error) {
 			console.log(error);
 		}

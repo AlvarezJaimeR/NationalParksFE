@@ -4,12 +4,21 @@ import { newUser, login, logout } from "../../actions/usersActions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import "./RegisterPage.css";
+import { useAppContext } from "../../libs/contextLib";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const RegisterPage = () => {
 	const { errors, values, handleChange, handleSubmit, setValues } =
 		UseForm(register);
 	const [selectedItem, setSelectedItem] = useState(0);
-	const dispatch = useDispatch();
+	const history = useHistory();
+	const {
+		loggedInUser,
+		isAuthenticated,
+		userHasAuthenticated,
+		setLoggedInUser,
+	} = useAppContext();
 	const imgNames = ["B", "C", "G", "L", "S"];
 
 	useEffect(() => {
@@ -33,13 +42,25 @@ const RegisterPage = () => {
 		console.log(values);
 	}
 
-	function register() {
-		console.log("Hit Submit Button");
+	async function register() {
+		console.log("Hit register Button");
 		const { confirmPassword, ...users } = values;
 		console.log(values);
 		console.log(users);
-		dispatch(newUser(users));
-		dispatch(login());
+
+		await axios
+			.post("http://localhost:5000/api/users/", users)
+			.then((response) => {
+				localStorage.setItem("token", response.headers["x-auth-token"]);
+				userHasAuthenticated(true);
+				setLoggedInUser(response.data);
+				console.log(loggedInUser);
+				history.push("/allParks");
+			})
+			.catch((error) => {
+				console.log(error);
+				console.log(error.response.data);
+			});
 	}
 
 	return (
