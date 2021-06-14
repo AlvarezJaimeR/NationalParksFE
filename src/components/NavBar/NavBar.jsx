@@ -1,14 +1,16 @@
-import { useDispatch, useSelector } from "react-redux";
-import { newUser, login, logout } from "../../actions/usersActions";
 import react, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useAppContext } from "../../libs/contextLib";
 
 const NavBar = (props) => {
-	const dispatch = useDispatch();
+	const history = useHistory();
+	const { isAuthenticated, userHasAuthenticated } = useAppContext();
 
 	function logoutButton() {
 		try {
-			alert("Come back soon!");
-			dispatch(logout());
+			console.log("logout button!");
+			localStorage.removeItem("token");
+			//alert("Come back soon!");
 		} catch (error) {
 			console.log(error);
 		}
@@ -86,20 +88,22 @@ const NavBar = (props) => {
 						</li>
 					</ul>
 					<div className="sm-p-left btn-group">
-						<>
-							<a className="btn btn-outline-primary" href="/register">
-								Register
-							</a>
-							<a className="nav-link" href="/login">
-								Sign In
-							</a>
-						</>
-
-						<button
-							className="btn btn-outline-danger"
-							onClick={() => logoutButton()}>
-							Logoff
-						</button>
+						{isAuthenticated === false ? (
+							<>
+								<a className="btn btn-outline-primary" href="/register">
+									Register
+								</a>
+								<a className="nav-link" href="/login">
+									Sign In
+								</a>
+							</>
+						) : (
+							<button
+								className="btn btn-outline-danger"
+								onClick={() => logoutButton()}>
+								Logoff
+							</button>
+						)}
 					</div>
 				</div>
 			</div>
