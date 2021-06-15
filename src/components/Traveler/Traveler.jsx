@@ -1,9 +1,10 @@
 import NavBar from "../NavBar/NavBar";
-import { useDispatch, useSelector } from "react-redux";
-import "./Travelers.css";
+import React, { useState, useEffect } from "react";
+import "./Traveler.css";
+import { useAppContext } from "../../libs/contextLib";
 
 const Travelers = () => {
-	const dispatch = useDispatch();
+	const { totalUsers, setTotalUsers } = useAppContext();
 
 	return (
 		<div>

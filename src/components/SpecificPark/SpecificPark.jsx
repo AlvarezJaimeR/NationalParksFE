@@ -1,6 +1,8 @@
 import NavBar from "../NavBar/NavBar";
 
-const SpecificPark = () => {
+const SpecificPark = (props) => {
+	console.log(props);
+
 	return (
 		<div>
 			<NavBar tabActive="1" />

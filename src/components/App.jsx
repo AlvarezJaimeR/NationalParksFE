@@ -5,7 +5,7 @@ import Home from "./Home/Home";
 import LoginPage from "./LoginPage/LoginPage";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import Main from "./Main/Main";
-import Travelers from "./Travelers/Travelers";
+import Traveler from "./Traveler/Traveler";
 import SpecificPark from "./SpecificPark/SpecificPark.jsx";
 import { AppContext } from "../libs/contextLib";
 import axios from "axios";
@@ -16,9 +16,12 @@ function App() {
 	const [isAuthenticated, userHasAuthenticated] = useState(false);
 	const [isAuthenticating, setIsAuthenticating] = useState(true);
 	const [headers, setHeaders] = useState();
+	const [totalUsers, setTotalUsers] = useState([]);
+	const [parks, setParks] = useState([]);
 
 	useEffect(() => {
 		onLoad();
+		getParks();
 	}, []);
 
 	useEffect(() => {
@@ -38,6 +41,9 @@ function App() {
 	}, [jwt]);
 
 	async function onLoad() {
+		await axios.get("http://localhost:5000/api/users").then((response) => {
+			setTotalUsers(response.data);
+		});
 		if (jwt !== null) {
 			try {
 				await setLoggedInUser(jwtDecode(jwt));
@@ -49,6 +55,20 @@ function App() {
 			}
 		}
 		setIsAuthenticating(false);
+	}
+
+	async function getParks() {
+		await axios
+			.get(
+				`https://developer.nps.gov/api/v1/parks?limit=500&api_key=t6gYQ5xCA0LgivhLEO2zbVfKa3pWcZcdix1CPozR`
+			)
+			.then((response) => {
+				setParks(response.data.data);
+			})
+			.catch((error) => {
+				console.log(error);
+				alert(error.response.data);
+			});
 	}
 
 	return (
@@ -64,6 +84,10 @@ function App() {
 						setJwt,
 						headers,
 						setHeaders,
+						totalUsers,
+						setTotalUsers,
+						parks,
+						setParks,
 					}}>
 					<Switch>
 						{/* <Route path="/login" render={(props) => <LoginPage {...props} login={true} />} /> */}
@@ -72,7 +96,7 @@ function App() {
 						<Route path="/login" component={LoginPage} />
 						<Route path="/register" component={RegisterPage} />
 						<Route path="/allParks" component={Main} />
-						<Route path="/allTravelers" component={Travelers} />
+						<Route path="/allTravelers" component={Traveler} />
 						<Route path="/specificPark" component={SpecificPark} />
 					</Switch>
 				</AppContext.Provider>
