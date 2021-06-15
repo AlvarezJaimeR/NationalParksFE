@@ -7,6 +7,7 @@ import RegisterPage from "./RegisterPage/RegisterPage";
 import Main from "./Main/Main";
 import Traveler from "./Traveler/Traveler";
 import SpecificPark from "./SpecificPark/SpecificPark.jsx";
+import SpecificTraveler from "./SpecificTraveler/SpecificTraveler";
 import { AppContext } from "../libs/contextLib";
 import axios from "axios";
 
@@ -108,6 +109,7 @@ function App() {
 						<Route path="/allParks" component={Main} />
 						<Route path="/allTravelers" component={Traveler} />
 						<Route path="/specificPark" component={SpecificPark} />
+						<Route path="/specificTraveler" component={SpecificTraveler} />
 					</Switch>
 				</AppContext.Provider>
 			</div>
