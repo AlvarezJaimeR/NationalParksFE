@@ -63,7 +63,18 @@ function App() {
 				`https://developer.nps.gov/api/v1/parks?limit=500&api_key=t6gYQ5xCA0LgivhLEO2zbVfKa3pWcZcdix1CPozR`
 			)
 			.then((response) => {
-				setParks(response.data.data);
+				console.log(response.data.data);
+				const tempParks = response.data.data.filter(
+					(parks) =>
+						parks.designation === "National Park" ||
+						parks.designation === "National Parks" ||
+						parks.designation === "National Park & Preserve" ||
+						parks.parkCode === "npsa" ||
+						parks.parkCode === "neri" ||
+						parks.parkCode === "redw"
+				);
+				setParks(tempParks);
+				console.log(tempParks);
 			})
 			.catch((error) => {
 				console.log(error);
