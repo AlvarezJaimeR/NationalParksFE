@@ -4,6 +4,7 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import "./Main.css";
 import SpecificPark from "../SpecificPark/SpecificPark";
+import { Link } from "react-router-dom";
 
 const Main = () => {
 	const { loggedInUser, setLoggedInUser, isAuthenticated, parks, setParks } =
@@ -17,9 +18,14 @@ const Main = () => {
 				<div className="row">
 					{parks.map((park, index) => (
 						<div key={index} className="card" style={{ width: "11em" }}>
-							<a href="/specificPark" className="card-body">
-								{park.name}
-							</a>
+							<Link to={{ pathname: "/specificPark", state: { index: index } }}>
+								{/* 								<img
+									className="park-picture"
+									alt={park.images[0].altText}
+									src={park.images[0].url}
+								/> */}
+								<p>{park.name + ", " + park.states}</p>
+							</Link>
 						</div>
 					))}
 				</div>

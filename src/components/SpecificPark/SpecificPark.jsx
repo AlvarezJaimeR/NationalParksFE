@@ -1,7 +1,7 @@
 import NavBar from "../NavBar/NavBar";
 
 const SpecificPark = (props) => {
-	console.log(props);
+	console.log(props.location.state);
 
 	return (
 		<div>

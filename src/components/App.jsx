@@ -102,7 +102,6 @@ function App() {
 					}}>
 					<Switch>
 						{/* <Route path="/login" render={(props) => <LoginPage {...props} login={true} />} /> */}
-						{/* <Route path="/logout" render={(props) => <LoginPage {...props} login={false} />} /> */}
 						<Route path="/" exact component={Home} />
 						<Route path="/login" component={LoginPage} />
 						<Route path="/register" component={RegisterPage} />
