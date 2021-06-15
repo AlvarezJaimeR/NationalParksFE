@@ -10,6 +10,15 @@ const Travelers = () => {
 		<div>
 			<NavBar tabActive="1" />
 			<h1 className="main">Travelers!</h1>
+			<div className="container">
+				<div className="row">
+					{totalUsers.map((user, index) => (
+						<div key={index} className="card" style={{ width: "11em" }}>
+							<p>{user.firstName + " " + user.lastName}</p>
+						</div>
+					))}
+				</div>
+			</div>
 		</div>
 	);
 };

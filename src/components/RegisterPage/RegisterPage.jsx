@@ -54,7 +54,6 @@ const RegisterPage = () => {
 				localStorage.setItem("token", response.headers["x-auth-token"]);
 				userHasAuthenticated(true);
 				setLoggedInUser(response.data);
-				console.log(loggedInUser);
 				history.push("/allParks");
 			})
 			.catch((error) => {
