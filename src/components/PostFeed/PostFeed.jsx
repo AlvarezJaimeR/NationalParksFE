@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const PostFeed = () => {
 	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
+	const [update, setUpdate] = useState(false);
 
 	const buttonClick = (event, post) => {
 		console.log("button", event);
@@ -23,6 +24,7 @@ const PostFeed = () => {
 					)
 					.then((res) => {
 						console.log(res);
+						setUpdate(!update);
 					})
 					.catch((err) => {
 						console.log(err);
@@ -38,13 +40,7 @@ const PostFeed = () => {
 		axios
 			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
 			.then((response) => setPosts(response.data));
-	}, [loggedInUser]);
-
-	useEffect(() => {
-		axios
-			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
-			.then((response) => setPosts(response.data));
-	}, []);
+	}, [loggedInUser, update]);
 
 	return posts.length === 0 ? (
 		<div>
@@ -67,6 +63,9 @@ const PostFeed = () => {
 						</div>
 						<div className="col-8 main-post-body">
 							<div className="row row-cols-1">
+								<div className="col">
+									<h5>Rating: {post.rating}/5</h5>
+								</div>
 								<div className="col">
 									<h3 className="post-body">{post.parkName}</h3>
 								</div>

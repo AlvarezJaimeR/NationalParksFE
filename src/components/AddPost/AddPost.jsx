@@ -16,6 +16,10 @@ const AddPost = (props) => {
 		const addPost = { ...values, parkName: props.parkName };
 		console.log(addPost);
 
+		if (addPost.rating == null) {
+			alert("Please choose a rating for this park review!");
+			return;
+		}
 		await axios
 			.post(
 				`http://localhost:5000/api/posts/${loggedInUser._id}/post`,
@@ -39,6 +43,21 @@ const AddPost = (props) => {
 			</div>
 			<div className="post-form">
 				<form onSubmit={handleSubmit}>
+					<div className="input-group mb-3">
+						<label className="input-group-text">Rating!</label>
+						<select
+							onChange={handleChange}
+							className="form-select"
+							id="rating"
+							name="rating">
+							<option>What would you rate this park?</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
 					<div className="input-group mb-3">
 						<textarea
 							name="text"
