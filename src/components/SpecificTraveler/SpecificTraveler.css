@@ -1,0 +1,12 @@
+.user-parks {
+	text-align: center;
+}
+
+.icon-pic {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}

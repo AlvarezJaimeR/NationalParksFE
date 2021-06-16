@@ -29,7 +29,10 @@ const Travelers = () => {
 					{otherUsers.map((user, index) => (
 						<div key={index} className="card" style={{ width: "11em" }}>
 							<Link
-								to={{ pathname: "/specificTraveler", state: { index: index } }}>
+								to={{
+									pathname: "/specificTraveler",
+									state: { users: otherUsers, index: index },
+								}}>
 								<p>{user.firstName + " " + user.lastName}</p>
 							</Link>
 						</div>
