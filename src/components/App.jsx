@@ -19,7 +19,6 @@ function App() {
 	const [headers, setHeaders] = useState();
 	const [totalUsers, setTotalUsers] = useState([]);
 	const [parks, setParks] = useState([]);
-	const [otherUsers, setOtherUsers] = useState([]);
 
 	useEffect(() => {
 		onLoad();
@@ -44,13 +43,8 @@ function App() {
 
 	async function onLoad() {
 		await axios.get("http://localhost:5000/api/users").then((response) => {
-			console.log(response.data);
+			console.log("all users", response.data);
 			setTotalUsers(response.data);
-			const tempUsers = response.data.filter(
-				(user) => user._id != response.data._id
-			);
-			console.log(tempUsers);
-			setOtherUsers(tempUsers);
 		});
 		if (jwt !== null) {
 			try {

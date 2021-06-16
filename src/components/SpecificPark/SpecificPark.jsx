@@ -20,14 +20,14 @@ const SpecificPark = (props) => {
 					src={parks[props.location.state.index].images[0].url}
 				/>
 				<div className="main-body container">
-					<span>Description:</span>
+					<h5>Description:</h5>
 					<p>{parks[props.location.state.index].description}</p>
-					<span>Website url: </span>
+					<h5>Website url: </h5>
 					<a href={parks[props.location.state.index].url}>
 						{parks[props.location.state.index].url}
 					</a>
 					<div>
-						<span>Directions info:</span>
+						<h5>Directions info:</h5>
 						<p>{parks[props.location.state.index].directionsInfo}</p>
 					</div>
 					<div>
@@ -35,7 +35,7 @@ const SpecificPark = (props) => {
 						<p>${parks[props.location.state.index].entranceFees[0].cost}</p>
 					</div>
 					<div>
-						<span>Standard operation hours:</span>
+						<h5>Standard operation hours:</h5>
 						<p>
 							Sunday:
 							{

@@ -5,15 +5,28 @@ import { useAppContext } from "../../libs/contextLib";
 import { Link } from "react-router-dom";
 
 const Travelers = () => {
-	const { totalUsers, setTotalUsers } = useAppContext();
+	const { totalUsers, setTotalUsers, loggedInUser } = useAppContext();
+	console.log("all users", totalUsers);
+	console.log("logged in user", loggedInUser);
+	const [otherUsers, setOtherUsers] = useState([]);
 
-	return (
+	useEffect(() => {
+		filterUser();
+	}, []);
+
+	function filterUser() {
+		const tempUser = totalUsers.filter((user) => user._id != loggedInUser._id);
+		console.log(tempUser);
+		setOtherUsers(tempUser);
+	}
+
+	return otherUsers.length > 0 ? (
 		<div>
 			<NavBar tabActive="1" />
 			<h1 className="main">Travelers!</h1>
 			<div className="container">
 				<div className="row">
-					{totalUsers.map((user, index) => (
+					{otherUsers.map((user, index) => (
 						<div key={index} className="card" style={{ width: "11em" }}>
 							<Link
 								to={{ pathname: "/specificTraveler", state: { index: index } }}>
@@ -24,6 +37,8 @@ const Travelers = () => {
 				</div>
 			</div>
 		</div>
+	) : (
+		<h1>loading...</h1>
 	);
 };
 
