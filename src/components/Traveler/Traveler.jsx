@@ -22,7 +22,7 @@ const Travelers = () => {
 
 	return otherUsers.length > 0 ? (
 		<div>
-			<NavBar tabActive="1" />
+			<NavBar tabActive="2" />
 			<h1 className="main">Travelers!</h1>
 			<div className="container">
 				<div className="row">
