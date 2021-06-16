@@ -41,8 +41,16 @@ const SpecificPark = (props) => {
 				break;
 			case "visited":
 				console.log("visited!");
+				const visitedPark = {
+					text: props.location.state.parks[props.location.state.index].fullName,
+				};
+				console.log(visitedPark);
 				axios
-					.put(`http://localhost:5000/api/users/${loggedInUser._id}/visited`)
+					.put(
+						`http://localhost:5000/api/users/${loggedInUser._id}/visited`,
+						visitedPark,
+						headers
+					)
 					.then((res) => {
 						console.log(res);
 						setUpdate(!update);
