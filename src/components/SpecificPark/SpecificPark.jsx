@@ -1,6 +1,8 @@
 import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect } from "react";
 import { useAppContext } from "../../libs/contextLib";
+import AddPost from "../AddPost/AddPost";
+import PostFeed from "../PostFeed/PostFeed";
 import "./SpecificPark.css";
 
 const SpecificPark = (props) => {
@@ -26,7 +28,7 @@ const SpecificPark = (props) => {
 						props.location.state.parks[props.location.state.index].images[0].url
 					}
 				/>
-				<div className="main-body container">
+				<div className="main-body">
 					<h5>Description:</h5>
 					<p>
 						{props.location.state.parks[props.location.state.index].description}
@@ -111,6 +113,12 @@ const SpecificPark = (props) => {
 							}
 						</p>
 					</div>
+				</div>
+				<div>
+					<AddPost />
+				</div>
+				<div>
+					<PostFeed />
 				</div>
 			</div>
 		</div>

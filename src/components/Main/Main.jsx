@@ -25,6 +25,7 @@ const Main = () => {
 				setSort(!sort);
 				break;
 			case "state":
+				console.log("state", parks);
 				break;
 			default:
 				break;
