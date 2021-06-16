@@ -18,7 +18,11 @@ const Main = () => {
 				<div className="row">
 					{parks.map((park, index) => (
 						<div key={index} className="card" style={{ width: "11em" }}>
-							<Link to={{ pathname: "/specificPark", state: { index: index } }}>
+							<Link
+								to={{
+									pathname: "/specificPark",
+									state: { index: index },
+								}}>
 								{/* 								<img
 									className="park-picture"
 									alt={park.images[0].altText}
