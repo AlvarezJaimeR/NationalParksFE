@@ -115,7 +115,11 @@ const SpecificPark = (props) => {
 					</div>
 				</div>
 				<div>
-					<AddPost />
+					<AddPost
+						parkName={
+							props.location.state.parks[props.location.state.index].fullName
+						}
+					/>
 				</div>
 				<div>
 					<PostFeed />

@@ -9,6 +9,7 @@ import Traveler from "./Traveler/Traveler";
 import SpecificPark from "./SpecificPark/SpecificPark.jsx";
 import SpecificTraveler from "./SpecificTraveler/SpecificTraveler";
 import { AppContext } from "../libs/contextLib";
+import EditPost from "./EditPost/EditPost";
 import axios from "axios";
 
 function App() {
@@ -111,6 +112,7 @@ function App() {
 						<Route path="/allTravelers" component={Traveler} />
 						<Route path="/specificPark" component={SpecificPark} />
 						<Route path="/specificTraveler" component={SpecificTraveler} />
+						<Route path="/editPost" component={EditPost} />
 					</Switch>
 				</AppContext.Provider>
 			</div>

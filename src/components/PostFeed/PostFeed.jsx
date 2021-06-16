@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./PostFeed.css";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const PostFeed = () => {
 	const { loggedInUser, headers } = useAppContext();
@@ -13,14 +14,10 @@ const PostFeed = () => {
 		console.log("button", posts);
 
 		switch (event.target.name) {
-			case "like":
-				break;
-			case "dislike":
-				break;
 			case "delete":
 				axios
 					.put(
-						`http://localhost:5000/api/posts/${loggedInUser._id}/${posts[post]._id}`,
+						`http://localhost:5000/api/posts/${loggedInUser._id}/delete/${posts[post]._id}`,
 						posts,
 						headers
 					)
@@ -47,7 +44,7 @@ const PostFeed = () => {
 		axios
 			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
 			.then((response) => setPosts(response.data));
-	}, [posts]);
+	}, []);
 
 	return posts.length === 0 ? (
 		<div>
@@ -71,11 +68,23 @@ const PostFeed = () => {
 						<div className="col-8 main-post-body">
 							<div className="row row-cols-1">
 								<div className="col">
-									<div className="post-body">{post.text}</div>
+									<h3 className="post-body">{post.parkName}</h3>
+								</div>
+								<div className="col">
+									<p className="post-body">{post.text}</p>
 								</div>
 							</div>
 						</div>
 						<div className="col-2">
+							<div className="row">
+								<Link
+									to={{
+										pathname: "/editPost",
+										state: { posts: posts, index: index },
+									}}>
+									<p>Edit Post!</p>
+								</Link>
+							</div>
 							<div className="row">
 								<button
 									name="delete"

@@ -1,25 +1,21 @@
 import React from "react";
-import "./AddPost.css";
+import "./EditPost.css";
 import useForm from "../UseForm/UseForm";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 
-const AddPost = (props) => {
+const AddPost = () => {
 	const { values, handleChange, handleSubmit, clearValues } =
 		useForm(submitPost);
 	const { loggedInUser, setLoggedInUser, headers } = useAppContext();
 
-	async function submitPost() {
+	function submitPost() {
 		console.log(values);
-		console.log(props);
-
-		const addPost = { ...values, parkName: props.parkName };
-		console.log(addPost);
-
-		await axios
+		axios
 			.post(
 				`http://localhost:5000/api/posts/${loggedInUser._id}/post`,
-				addPost,
+				values,
 				headers
 			)
 			.then((response) =>
@@ -27,13 +23,13 @@ const AddPost = (props) => {
 			)
 			.catch((error) => {
 				console.log(error);
-				console.log(error.response.data);
 			});
 		clearValues();
 	}
 
 	return (
 		<div className="row text-center">
+			<NavBar tabActive="1" />
 			<div className="col">
 				<h6 className="subtitle">Would you like to post a review?</h6>
 			</div>
