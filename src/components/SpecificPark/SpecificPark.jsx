@@ -15,20 +15,53 @@ const SpecificPark = (props) => {
 	const [wishlist, setWishlist] = useState(false);
 	const [specificUser, setSpecificUser] = useState();
 
-	useEffect(() => {
+	useEffect(
+		() => {
+			getUser();
+		},
+		[],
+		[update]
+	);
+
+	async function getUser() {
 		console.log(loggedInUser);
-		axios
+		await axios
 			.get(`http://localhost:5000/api/users/${loggedInUser._id}`)
 			.then((response) => {
 				console.log("specific user", response.data);
 				setSpecificUser(response.data);
-			});
-	}, []);
+				console.log(response.data.wishListParks);
+				const removedWish = response.data.wishListParks.filter(
+					(park) =>
+						park.text ===
+						props.location.state.parks[props.location.state.index].fullName
+				);
+				console.log(removedWish);
+				if (removedWish.length > 0) {
+					setWishlist(true);
+				} else setWishlist(false);
 
-	useEffect(
+				//filterPark();
+			});
+	}
+
+	async function filterPark() {
+		console.log(specificUser);
+		const removedWish = specificUser.wishListParks.filter(
+			(park) =>
+				park.text ===
+				props.location.state.parks[props.location.state.index].fullName
+		);
+		console.log(removedWish);
+		if (removedWish.length > 0) {
+			setWishlist(true);
+		} else setWishlist(false);
+	}
+
+	/* 	useEffect(
 		() => {
-			console.log(loggedInUser);
-			const removedWish = loggedInUser.wishListParks.filter(
+			console.log(specificUser);
+			const removedWish = specificUser.wishListParks.filter(
 				(park) =>
 					park.text ===
 					props.location.state.parks[props.location.state.index].fullName
@@ -38,14 +71,15 @@ const SpecificPark = (props) => {
 				setWishlist(true);
 			} else setWishlist(false);
 		},
-		[],
-		[wishlist]
-	);
+		[specificUser],
+		[wishlist],
+		[update]
+	); */
 
-	useEffect(
+	/* 	useEffect(
 		() => {
-			console.log(loggedInUser);
-			const findWish = loggedInUser.wishListParks.filter(
+			console.log(specificUser);
+			const findWish = specificUser.wishListParks.filter(
 				(park) =>
 					park.text ===
 					props.location.state.parks[props.location.state.index].fullName
@@ -55,9 +89,8 @@ const SpecificPark = (props) => {
 				setWishlist(true);
 			}
 		},
-		[update],
-		[loggedInUser]
-	);
+		[update]
+	); */
 
 	const buttonClick = (event) => {
 		console.log("button", event);
@@ -77,7 +110,6 @@ const SpecificPark = (props) => {
 					)
 					.then((res) => {
 						console.log(res);
-						//setLoggedInUser(res.data);
 						setWishlist(true);
 						setUpdate(!update);
 					})
@@ -109,7 +141,7 @@ const SpecificPark = (props) => {
 				break;
 			case "wishlist remove":
 				console.log("remove wishlist!");
-				const wish = props.location.state.user[0].wishListParks.filter(
+				const wish = specificUser.wishListParks.filter(
 					(park) =>
 						park.text ===
 						props.location.state.parks[props.location.state.index].fullName
