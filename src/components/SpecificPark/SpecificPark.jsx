@@ -13,6 +13,7 @@ const SpecificPark = (props) => {
 	//console.log(props.location.state.parks[props.location.state.index]);
 	const [update, setUpdate] = useState(true);
 	const [wishlist, setWishlist] = useState(false);
+	const [visitlist, setVisitlist] = useState(false);
 	const [specificUser, setSpecificUser] = useState();
 
 	useEffect(
@@ -20,7 +21,9 @@ const SpecificPark = (props) => {
 			getUser();
 		},
 		[],
-		[update]
+		[update],
+		[wishlist],
+		[visitlist]
 	);
 
 	async function getUser() {
@@ -31,81 +34,41 @@ const SpecificPark = (props) => {
 				console.log("specific user", response.data);
 				setSpecificUser(response.data);
 				console.log(response.data.wishListParks);
+				console.log(response.data.visitedParks);
 				const removedWish = response.data.wishListParks.filter(
 					(park) =>
 						park.text ===
 						props.location.state.parks[props.location.state.index].fullName
 				);
 				console.log(removedWish);
+				const removedVisit = response.data.visitedParks.filter(
+					(parkV) =>
+						parkV.text ===
+						props.location.state.parks[props.location.state.index].fullName
+				);
+				console.log(removedVisit);
 				if (removedWish.length > 0) {
 					setWishlist(true);
 				} else setWishlist(false);
-
-				//filterPark();
+				if (removedVisit.length > 0) {
+					setVisitlist(true);
+				} else setVisitlist(false);
 			});
 	}
 
-	async function filterPark() {
-		console.log(specificUser);
-		const removedWish = specificUser.wishListParks.filter(
-			(park) =>
-				park.text ===
-				props.location.state.parks[props.location.state.index].fullName
-		);
-		console.log(removedWish);
-		if (removedWish.length > 0) {
-			setWishlist(true);
-		} else setWishlist(false);
-	}
-
-	/* 	useEffect(
-		() => {
-			console.log(specificUser);
-			const removedWish = specificUser.wishListParks.filter(
-				(park) =>
-					park.text ===
-					props.location.state.parks[props.location.state.index].fullName
-			);
-			console.log(removedWish);
-			if (removedWish.length > 0) {
-				setWishlist(true);
-			} else setWishlist(false);
-		},
-		[specificUser],
-		[wishlist],
-		[update]
-	); */
-
-	/* 	useEffect(
-		() => {
-			console.log(specificUser);
-			const findWish = specificUser.wishListParks.filter(
-				(park) =>
-					park.text ===
-					props.location.state.parks[props.location.state.index].fullName
-			);
-			console.log(findWish);
-			if (findWish.length > 0) {
-				setWishlist(true);
-			}
-		},
-		[update]
-	); */
-
 	const buttonClick = (event) => {
-		console.log("button", event);
-
+		console.log("button", event.target.name);
 		switch (event.target.name) {
 			case "wishlist":
 				console.log("wishlist!");
-				const park = {
+				const wishlistPark = {
 					text: props.location.state.parks[props.location.state.index].fullName,
 				};
-				console.log(park);
+				console.log(wishlistPark);
 				axios
 					.put(
 						`http://localhost:5000/api/users/${loggedInUser._id}/wishlist`,
-						park,
+						wishlistPark,
 						headers
 					)
 					.then((res) => {
@@ -132,6 +95,7 @@ const SpecificPark = (props) => {
 					)
 					.then((res) => {
 						console.log(res);
+						setVisitlist(true);
 						setUpdate(!update);
 					})
 					.catch((err) => {
@@ -163,6 +127,30 @@ const SpecificPark = (props) => {
 						console.log(err.response.data);
 					});
 				break;
+			case "visited remove":
+				console.log("remove visited list");
+				const visit = specificUser.visitedParks.filter(
+					(park) =>
+						park.text ===
+						props.location.state.parks[props.location.state.index].fullName
+				);
+				console.log(visit);
+				axios
+					.put(
+						`http://localhost:5000/api/users/${loggedInUser._id}/${visit[0].text}/visit`,
+						visit,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+						setVisitlist(false);
+						setUpdate(!update);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
+				break;
 			default:
 				break;
 		}
@@ -185,33 +173,47 @@ const SpecificPark = (props) => {
 						props.location.state.parks[props.location.state.index].images[0].url
 					}
 				/>
-				<div>
-					{wishlist === false ? (
+				{visitlist === false ? (
+					<div>
+						{wishlist === false ? (
+							<div>
+								<button
+									name="wishlist"
+									onClick={(event) => buttonClick(event)}
+									className="btn btn-outline-dark">
+									Add to Wishlist!
+								</button>
+							</div>
+						) : (
+							<div>
+								<button
+									name="wishlist remove"
+									onClick={(event) => buttonClick(event)}
+									className="btn btn-outline-dark">
+									Remove from wish list!
+								</button>
+							</div>
+						)}
 						<div>
 							<button
-								name="wishlist"
+								name="visited"
 								onClick={(event) => buttonClick(event)}
 								className="btn btn-outline-dark">
-								Add to Wishlist!
+								Click here if you visited the park!
 							</button>
 						</div>
-					) : (
-						<div>
-							<button
-								name="wishlist remove"
-								onClick={(event) => buttonClick(event)}
-								className="btn btn-outline-dark">
-								Remove from wishlist!
-							</button>
-						</div>
-					)}
-					<button
-						name="visited"
-						onClick={(event) => buttonClick(event)}
-						className="btn btn-outline-dark">
-						Click here if you visited the park!
-					</button>
-				</div>
+					</div>
+				) : (
+					<div>
+						<button
+							name="visited remove"
+							onClick={(event) => buttonClick(event)}
+							className="btn btn-outline-dark">
+							Remove from visited list!
+						</button>
+					</div>
+				)}
+
 				<div className="main-body">
 					<h5>Description:</h5>
 					<p>

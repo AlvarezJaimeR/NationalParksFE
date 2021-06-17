@@ -42,7 +42,10 @@ const SpecificTraveler = (props) => {
 					</div>
 				</div>
 			) : (
-				<p>This user currently doesn't have any parks on their wishlist.</p>
+				<div>
+					<p>Park Wishlist:</p>
+					<p>This user currently doesn't have any parks on their wishlist.</p>
+				</div>
 			)}
 			{props.location.state.users[props.location.state.index].visitedParks
 				.length > 0 ? (
@@ -64,7 +67,10 @@ const SpecificTraveler = (props) => {
 					</div>
 				</div>
 			) : (
-				<p>This user has not been able to visit a park.</p>
+				<div>
+					<p>Visited Parks:</p>
+					<p>This user has not been able to visit a park.</p>
+				</div>
 			)}
 		</div>
 	);
