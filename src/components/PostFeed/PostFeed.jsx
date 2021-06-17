@@ -4,10 +4,11 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const PostFeed = () => {
+const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
 	const [update, setUpdate] = useState(false);
+	console.log("post feed props", props);
 
 	const buttonClick = (event, post) => {
 		console.log("button", event);
@@ -39,7 +40,14 @@ const PostFeed = () => {
 	useEffect(() => {
 		axios
 			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
-			.then((response) => setPosts(response.data));
+			.then((response) => {
+				console.log(response.data);
+				const filteredPosts = response.data.filter(
+					(post) => post.parkName === props.parkName
+				);
+				console.log(filteredPosts);
+				setPosts(filteredPosts);
+			});
 	}, [loggedInUser, update]);
 
 	return posts.length === 0 ? (
