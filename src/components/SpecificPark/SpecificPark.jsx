@@ -7,13 +7,57 @@ import "./SpecificPark.css";
 import axios from "axios";
 
 const SpecificPark = (props) => {
-	console.log(props.location.state);
-	console.log(props.location.state.index);
-	const { loggedInUser, headers } = useAppContext();
-	console.log(props.location.state.parks[props.location.state.index]);
+	//console.log(props.location.state);
+	//console.log(props.location.state.index);
+	const { loggedInUser, headers, setLoggedInUser } = useAppContext();
+	//console.log(props.location.state.parks[props.location.state.index]);
 	const [update, setUpdate] = useState(true);
+	const [wishlist, setWishlist] = useState(false);
+	const [specificUser, setSpecificUser] = useState();
 
-	useEffect(() => {}, [update]);
+	useEffect(() => {
+		console.log(loggedInUser);
+		axios
+			.get(`http://localhost:5000/api/users/${loggedInUser._id}`)
+			.then((response) => {
+				console.log("specific user", response.data);
+				setSpecificUser(response.data);
+			});
+	}, []);
+
+	useEffect(
+		() => {
+			console.log(loggedInUser);
+			const removedWish = loggedInUser.wishListParks.filter(
+				(park) =>
+					park.text ===
+					props.location.state.parks[props.location.state.index].fullName
+			);
+			console.log(removedWish);
+			if (removedWish.length > 0) {
+				setWishlist(true);
+			} else setWishlist(false);
+		},
+		[],
+		[wishlist]
+	);
+
+	useEffect(
+		() => {
+			console.log(loggedInUser);
+			const findWish = loggedInUser.wishListParks.filter(
+				(park) =>
+					park.text ===
+					props.location.state.parks[props.location.state.index].fullName
+			);
+			console.log(findWish);
+			if (findWish.length > 0) {
+				setWishlist(true);
+			}
+		},
+		[update],
+		[loggedInUser]
+	);
 
 	const buttonClick = (event) => {
 		console.log("button", event);
@@ -33,6 +77,8 @@ const SpecificPark = (props) => {
 					)
 					.then((res) => {
 						console.log(res);
+						//setLoggedInUser(res.data);
+						setWishlist(true);
 						setUpdate(!update);
 					})
 					.catch((err) => {
@@ -54,6 +100,30 @@ const SpecificPark = (props) => {
 					)
 					.then((res) => {
 						console.log(res);
+						setUpdate(!update);
+					})
+					.catch((err) => {
+						console.log(err);
+						console.log(err.response.data);
+					});
+				break;
+			case "wishlist remove":
+				console.log("remove wishlist!");
+				const wish = props.location.state.user[0].wishListParks.filter(
+					(park) =>
+						park.text ===
+						props.location.state.parks[props.location.state.index].fullName
+				);
+				console.log(wish);
+				axios
+					.put(
+						`http://localhost:5000/api/users/${loggedInUser._id}/${wish[0].text}`,
+						wish,
+						headers
+					)
+					.then((res) => {
+						console.log(res);
+						setWishlist(false);
 						setUpdate(!update);
 					})
 					.catch((err) => {
@@ -84,13 +154,25 @@ const SpecificPark = (props) => {
 					}
 				/>
 				<div>
-					{}
-					<button
-						name="wishlist"
-						onClick={(event) => buttonClick(event)}
-						className="btn btn-outline-dark">
-						Add to Wishlist!
-					</button>
+					{wishlist === false ? (
+						<div>
+							<button
+								name="wishlist"
+								onClick={(event) => buttonClick(event)}
+								className="btn btn-outline-dark">
+								Add to Wishlist!
+							</button>
+						</div>
+					) : (
+						<div>
+							<button
+								name="wishlist remove"
+								onClick={(event) => buttonClick(event)}
+								className="btn btn-outline-dark">
+								Remove from wishlist!
+							</button>
+						</div>
+					)}
 					<button
 						name="visited"
 						onClick={(event) => buttonClick(event)}

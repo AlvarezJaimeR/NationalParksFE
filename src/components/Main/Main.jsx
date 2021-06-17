@@ -7,8 +7,14 @@ import { Link } from "react-router-dom";
 import SearchPark from "../SearchPark/SearchPark";
 
 const Main = () => {
-	const { loggedInUser, setLoggedInUser, isAuthenticated, parks, setParks } =
-		useAppContext();
+	const {
+		loggedInUser,
+		setLoggedInUser,
+		isAuthenticated,
+		parks,
+		setParks,
+		totalUsers,
+	} = useAppContext();
 	const [sort, setSort] = useState(false);
 
 	const buttonClick = (event) => {

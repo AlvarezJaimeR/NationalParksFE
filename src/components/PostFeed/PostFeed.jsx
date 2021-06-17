@@ -8,7 +8,7 @@ const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
 	const [update, setUpdate] = useState(false);
-	console.log("post feed props", props);
+	//console.log("post feed props", props);
 
 	const buttonClick = (event, post) => {
 		console.log("button", event);
@@ -24,7 +24,7 @@ const PostFeed = (props) => {
 						headers
 					)
 					.then((res) => {
-						console.log(res);
+						//console.log(res);
 						setUpdate(!update);
 					})
 					.catch((err) => {
@@ -41,11 +41,11 @@ const PostFeed = (props) => {
 		axios
 			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
 			.then((response) => {
-				console.log(response.data);
+				//console.log(response.data);
 				const filteredPosts = response.data.filter(
 					(post) => post.parkName === props.parkName
 				);
-				console.log(filteredPosts);
+				//console.log(filteredPosts);
 				setPosts(filteredPosts);
 			});
 	}, [loggedInUser, update]);
