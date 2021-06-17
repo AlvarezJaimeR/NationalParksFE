@@ -18,6 +18,7 @@ const SpecificPark = (props) => {
 
 	useEffect(
 		() => {
+			console.log("passing");
 			getUser();
 		},
 		[],
@@ -89,12 +90,13 @@ const SpecificPark = (props) => {
 				console.log(visitedPark);
 				axios
 					.put(
-						`http://localhost:5000/api/users/${loggedInUser._id}/visited`,
+						`http://localhost:5000/api/users/${loggedInUser._id}/visited/${visitedPark.text}`,
 						visitedPark,
 						headers
 					)
 					.then((res) => {
 						console.log(res);
+						setSpecificUser(res.data);
 						setVisitlist(true);
 						setUpdate(!update);
 					})
@@ -129,6 +131,7 @@ const SpecificPark = (props) => {
 				break;
 			case "visited remove":
 				console.log("remove visited list");
+				console.log(specificUser);
 				const visit = specificUser.visitedParks.filter(
 					(park) =>
 						park.text ===
