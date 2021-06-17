@@ -14,6 +14,7 @@ const SpecificPark = (props) => {
 	const [update, setUpdate] = useState(true);
 
 	useEffect(() => {}, [update]);
+
 	const buttonClick = (event) => {
 		console.log("button", event);
 
@@ -83,6 +84,7 @@ const SpecificPark = (props) => {
 					}
 				/>
 				<div>
+					{}
 					<button
 						name="wishlist"
 						onClick={(event) => buttonClick(event)}

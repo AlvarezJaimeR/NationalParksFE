@@ -65,7 +65,7 @@ const AddPost = (props) => {
 							cols="60"
 							rows="5"
 							className="form-control"
-							placeholder="Type away!"
+							placeholder="Type your review here..."
 							aria-label="Post time"
 							aria-describedby="post-button"
 							onChange={handleChange}

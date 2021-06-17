@@ -141,6 +141,7 @@ const RegisterPage = () => {
 									<div
 										key={index}
 										onClick={(e) => highlightImage(e, name, index)}
+										style={{}}
 										className={selectedItem === name.id ? "hover" : null}>
 										<img
 											src={process.env.PUBLIC_URL + `images/${name}.png`}></img>

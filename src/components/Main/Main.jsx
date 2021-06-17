@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import "./Main.css";
-import SpecificPark from "../SpecificPark/SpecificPark";
 import { Link } from "react-router-dom";
+import SearchPark from "../SearchPark/SearchPark";
 
 const Main = () => {
 	const { loggedInUser, setLoggedInUser, isAuthenticated, parks, setParks } =
@@ -26,6 +26,9 @@ const Main = () => {
 				break;
 			case "state":
 				console.log("state", parks);
+				parks.sort((a, b) => (a.states > b.states ? 1 : -1));
+				console.log(parks);
+				setSort(!sort);
 				break;
 			default:
 				break;
@@ -40,6 +43,9 @@ const Main = () => {
 		<div>
 			<NavBar tabActive="1" />
 			<h1 className="main">National Parks!</h1>
+			<div>
+				<SearchPark />
+			</div>
 			<div className="container">
 				<button>Filter by wishlist</button>
 				<button>Filter by visited parks</button>
