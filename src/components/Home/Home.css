@@ -1,3 +1,38 @@
 .home {
 	margin-top: 15%;
 }
+.mt-10 {
+	margin-top: 10%;
+}
+.center {
+	margin: auto;
+	width: 100%;
+	/* border: 3px solid #73ad21; */
+	/* padding: 10px; */
+	/* align-items: center; */
+	/* vertical-align: middle; */
+}
+
+.pt-6 {
+	padding-top: 6.5rem;
+}
+
+.pt-8 {
+	padding-top: 8.5rem;
+}
+
+.home-page-image {
+	height: 300px;
+	width: 500px;
+	border-radius: 2rem;
+}
+
+.carousel-image {
+	height: 500px;
+	width: 700px;
+	border-radius: 2rem;
+}
+
+.h500 {
+	height: 500px;
+}

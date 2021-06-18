@@ -129,6 +129,11 @@ const Main = () => {
 											pathname: "/specificPark",
 											state: { parks: parks, index: index },
 										}}>
+										<img
+											className="park-picture"
+											alt={park.images[0].altText}
+											src={park.images[0].url}
+										/>
 										<p>{park.name + ", " + park.states}</p>
 									</Link>
 								</div>
