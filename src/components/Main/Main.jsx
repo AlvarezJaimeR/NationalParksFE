@@ -7,15 +7,11 @@ import { Link } from "react-router-dom";
 import SearchPark from "../SearchPark/SearchPark";
 
 const Main = () => {
-	const {
-		loggedInUser,
-		setLoggedInUser,
-		isAuthenticated,
-		parks,
-		setParks,
-		totalUsers,
-	} = useAppContext();
+	const { loggedInUser, parks, totalUsers } = useAppContext();
 	const [sort, setSort] = useState(false);
+	const [specificUser, setSpecificUser] = useState();
+	const [filteredWish, setFilteredWish] = useState();
+	const [filterWishLogic, setFilterWishLogic] = useState(false);
 
 	const buttonClick = (event) => {
 		switch (event.target.name) {
@@ -36,6 +32,27 @@ const Main = () => {
 				console.log(parks);
 				setSort(!sort);
 				break;
+			case "filter all":
+				console.log("filter all");
+				setFilterWishLogic(false);
+				break;
+			case "filter wishlist":
+				console.log("filter wishlist");
+				console.log(specificUser.wishListParks);
+				const filterWish = parks.filter((park) => {
+					for (let i = 0; i < specificUser.wishListParks.length; i++) {
+						if (park.fullName === specificUser.wishListParks[i].text) {
+							return park;
+						}
+					}
+				});
+				console.log(filterWish);
+				setFilteredWish(filterWish);
+				setFilterWishLogic(true);
+				break;
+			case "filter visited":
+				console.log("filter visted");
+				break;
 			default:
 				break;
 		}
@@ -43,7 +60,20 @@ const Main = () => {
 
 	useEffect(() => {
 		console.log("passing");
+		getUser();
 	}, [parks]);
+
+	async function getUser() {
+		console.log(loggedInUser);
+		await axios
+			.get(`http://localhost:5000/api/users/${loggedInUser._id}`)
+			.then((response) => {
+				console.log("specific user", response.data);
+				setSpecificUser(response.data);
+				console.log(response.data.wishListParks);
+				console.log(response.data.visitedParks);
+			});
+	}
 
 	return parks.length > 0 ? (
 		<div>
@@ -53,8 +83,15 @@ const Main = () => {
 				<SearchPark />
 			</div>
 			<div className="container">
-				<button>Filter by wishlist</button>
-				<button>Filter by visited parks</button>
+				<button onClick={(event) => buttonClick(event)} name="filter all">
+					Filter by all
+				</button>
+				<button onClick={(event) => buttonClick(event)} name="filter wishlist">
+					Filter by wishlist
+				</button>
+				<button onClick={(event) => buttonClick(event)} name="filter visited">
+					Filter by visited parks
+				</button>
 				<button onClick={(event) => buttonClick(event)} name="sortAZ">
 					Sort A-Z
 				</button>
@@ -65,26 +102,49 @@ const Main = () => {
 					Sort By State
 				</button>
 			</div>
-			<div className="container">
-				<div className="row">
-					{parks.map((park, index) => (
-						<div key={index} className="card" style={{ width: "11em" }}>
-							<Link
-								to={{
-									pathname: "/specificPark",
-									state: { parks: parks, index: index },
-								}}>
-								{/* 								<img
+			{filterWishLogic === true ? (
+				<div className="container">
+					<div className="row">
+						{filteredWish.map((park, index) => (
+							<div key={index} className="card" style={{ width: "11em" }}>
+								<Link
+									to={{
+										pathname: "/specificPark",
+										state: { parks: parks, index: index },
+									}}>
+									{/* 								<img
 									className="park-picture"
 									alt={park.images[0].altText}
 									src={park.images[0].url}
 								/> */}
-								<p>{park.name + ", " + park.states}</p>
-							</Link>
-						</div>
-					))}
+									<p>{park.name + ", " + park.states}</p>
+								</Link>
+							</div>
+						))}
+					</div>
 				</div>
-			</div>
+			) : (
+				<div className="container">
+					<div className="row">
+						{parks.map((park, index) => (
+							<div key={index} className="card" style={{ width: "11em" }}>
+								<Link
+									to={{
+										pathname: "/specificPark",
+										state: { parks: parks, index: index },
+									}}>
+									{/* 								<img
+									className="park-picture"
+									alt={park.images[0].altText}
+									src={park.images[0].url}
+								/> */}
+									<p>{park.name + ", " + park.states}</p>
+								</Link>
+							</div>
+						))}
+					</div>
+				</div>
+			)}
 		</div>
 	) : (
 		<div className="main">
