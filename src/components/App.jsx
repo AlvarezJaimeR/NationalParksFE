@@ -63,7 +63,7 @@ function App() {
 	async function getParks() {
 		await axios
 			.get(
-				`https://developer.nps.gov/api/v1/parks?limit=500&api_key=t6gYQ5xCA0LgivhLEO2zbVfKa3pWcZcdix1CPozR`
+				`https://developer.nps.gov/api/v1/parks?limit=500&api_key=${process.env.REACT_APP_NPS_API_KEY}`
 			)
 			.then((response) => {
 				console.log(response.data.data);

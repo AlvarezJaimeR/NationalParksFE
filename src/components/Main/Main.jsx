@@ -12,6 +12,8 @@ const Main = () => {
 	const [specificUser, setSpecificUser] = useState();
 	const [filteredWish, setFilteredWish] = useState();
 	const [filterWishLogic, setFilterWishLogic] = useState(false);
+	const [filterVisitLogic, setFilterVisitLogic] = useState(false);
+	const [filteredVisit, setFilteredVisit] = useState(false);
 
 	const buttonClick = (event) => {
 		switch (event.target.name) {
@@ -35,6 +37,7 @@ const Main = () => {
 			case "filter all":
 				console.log("filter all");
 				setFilterWishLogic(false);
+				setFilterVisitLogic(false);
 				break;
 			case "filter wishlist":
 				console.log("filter wishlist");
@@ -49,9 +52,22 @@ const Main = () => {
 				console.log(filterWish);
 				setFilteredWish(filterWish);
 				setFilterWishLogic(true);
+				setFilterVisitLogic(false);
 				break;
 			case "filter visited":
 				console.log("filter visted");
+				console.log(specificUser.visitedParks);
+				const filterVisit = parks.filter((park) => {
+					for (let i = 0; i < specificUser.visitedParks.length; i++) {
+						if (park.fullName === specificUser.visitedParks[i].text) {
+							return park;
+						}
+					}
+				});
+				console.log(filterVisit);
+				setFilteredVisit(filterVisit);
+				setFilterWishLogic(false);
+				setFilterVisitLogic(true);
 				break;
 			default:
 				break;
@@ -102,47 +118,64 @@ const Main = () => {
 					Sort By State
 				</button>
 			</div>
-			{filterWishLogic === true ? (
-				<div className="container">
-					<div className="row">
-						{filteredWish.map((park, index) => (
-							<div key={index} className="card" style={{ width: "11em" }}>
-								<Link
-									to={{
-										pathname: "/specificPark",
-										state: { parks: parks, index: index },
-									}}>
-									{/* 								<img
-									className="park-picture"
-									alt={park.images[0].altText}
-									src={park.images[0].url}
-								/> */}
-									<p>{park.name + ", " + park.states}</p>
-								</Link>
-							</div>
-						))}
+			{filterVisitLogic === true ? (
+				<div>
+					<div className="container">
+						<div className="row">
+							{filteredVisit.map((park, index) => (
+								<div key={index} className="card" style={{ width: "11em" }}>
+									<Link
+										to={{
+											pathname: "/specificPark",
+											state: { parks: parks, index: index },
+										}}>
+										<p>{park.name + ", " + park.states}</p>
+									</Link>
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
 			) : (
-				<div className="container">
-					<div className="row">
-						{parks.map((park, index) => (
-							<div key={index} className="card" style={{ width: "11em" }}>
-								<Link
-									to={{
-										pathname: "/specificPark",
-										state: { parks: parks, index: index },
-									}}>
-									{/* 								<img
+				<div>
+					{filterWishLogic === true && filterVisitLogic === false ? (
+						<div className="container">
+							<div className="row">
+								{filteredWish.map((park, index) => (
+									<div key={index} className="card" style={{ width: "11em" }}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: { parks: parks, index: index },
+											}}>
+											<p>{park.name + ", " + park.states}</p>
+										</Link>
+									</div>
+								))}
+							</div>
+						</div>
+					) : (
+						<div className="container">
+							<div className="row">
+								{parks.map((park, index) => (
+									<div key={index} className="card" style={{ width: "11em" }}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: { parks: parks, index: index },
+											}}>
+											{/* 								<img
 									className="park-picture"
 									alt={park.images[0].altText}
 									src={park.images[0].url}
 								/> */}
-									<p>{park.name + ", " + park.states}</p>
-								</Link>
+											<p>{park.name + ", " + park.states}</p>
+										</Link>
+									</div>
+								))}
 							</div>
-						))}
-					</div>
+						</div>
+					)}
 				</div>
 			)}
 		</div>

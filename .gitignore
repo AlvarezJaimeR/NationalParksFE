@@ -105,3 +105,6 @@ dist
 
 # Custom Config files
 config/default.json
+
+# api keys
+.env
