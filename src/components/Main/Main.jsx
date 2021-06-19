@@ -4,7 +4,6 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import "./Main.css";
 import { Link } from "react-router-dom";
-import SearchPark from "../SearchPark/SearchPark";
 
 const Main = () => {
 	const { loggedInUser, parks, totalUsers } = useAppContext();
@@ -14,6 +13,7 @@ const Main = () => {
 	const [filterWishLogic, setFilterWishLogic] = useState(false);
 	const [filterVisitLogic, setFilterVisitLogic] = useState(false);
 	const [filteredVisit, setFilteredVisit] = useState(false);
+	const [searchName, setSearchName] = useState("");
 
 	const buttonClick = (event) => {
 		switch (event.target.name) {
@@ -96,7 +96,14 @@ const Main = () => {
 			<NavBar tabActive="1" />
 			<h1 className="main">National Parks!</h1>
 			<div>
-				<SearchPark />
+				<input
+					className="input-field"
+					type="text"
+					placeholder="Search by name... (Arches)"
+					onChange={(event) => {
+						setSearchName(event.target.value);
+					}}
+				/>
 			</div>
 			<div className="container">
 				<button onClick={(event) => buttonClick(event)} name="filter all">
@@ -162,22 +169,34 @@ const Main = () => {
 					) : (
 						<div className="container">
 							<div className="row">
-								{parks.map((park, index) => (
-									<div key={index} className="card" style={{ width: "11em" }}>
-										<Link
-											to={{
-												pathname: "/specificPark",
-												state: { parks: parks, index: index },
-											}}>
-											{/* 								<img
+								{parks
+									.filter((park) => {
+										if (searchName === "") {
+											return park;
+										} else if (
+											park.fullName
+												.toLowerCase()
+												.includes(searchName.toLowerCase())
+										) {
+											return park;
+										}
+									})
+									.map((park, index) => (
+										<div key={index} className="card" style={{ width: "11em" }}>
+											<Link
+												to={{
+													pathname: "/specificPark",
+													state: { parks: parks, index: index },
+												}}>
+												{/* 								<img
 									className="park-picture"
 									alt={park.images[0].altText}
 									src={park.images[0].url}
 								/> */}
-											<p>{park.name + ", " + park.states}</p>
-										</Link>
-									</div>
-								))}
+												<p>{park.name + ", " + park.states}</p>
+											</Link>
+										</div>
+									))}
 							</div>
 						</div>
 					)}
