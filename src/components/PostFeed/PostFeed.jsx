@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./PostFeed.css";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
 	const [update, setUpdate] = useState(false);
+	const [openModal, setOpenModal] = useState(false);
 	//console.log("post feed props", props);
 
 	const buttonClick = (event, post) => {
@@ -16,6 +16,11 @@ const PostFeed = (props) => {
 		console.log("button", posts);
 
 		switch (event.target.name) {
+			case "edit":
+				console.log("edit!");
+				setOpenModal(true);
+				setUpdate(!update);
+				break;
 			case "delete":
 				axios
 					.put(
@@ -84,19 +89,61 @@ const PostFeed = (props) => {
 						</div>
 						<div className="col-2">
 							<div className="row">
-								<Link
-									to={{
-										pathname: "/editPost",
-										state: { posts: posts, index: index },
-									}}>
-									<p>Edit Post!</p>
-								</Link>
+								<button
+									type="button"
+									className="btn btn-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#staticBackdrop"
+									onClick={(event) => buttonClick(event, index)}
+									name="edit">
+									Edit Post!
+								</button>
+								{openModal === true ? (
+									<div
+										className="modal fade"
+										id="staticBackdrop"
+										data-bs-backdrop="static"
+										data-bs-keyboard="false"
+										tabIndex="-1"
+										aria-labelledby="staticBackdropLabel"
+										aria-hidden="true">
+										<div className="modal-dialog">
+											<div className="modal-content">
+												<div className="modal-header">
+													<h5 className="modal-title" id="staticBackdropLabel">
+														Modal title
+													</h5>
+													<button
+														type="button"
+														className="btn-close"
+														data-bs-dismiss="modal"
+														aria-label="Close"></button>
+												</div>
+												<div className="modal-body">...</div>
+												<div className="modal-footer">
+													<button
+														type="button"
+														className="btn btn-secondary"
+														data-bs-dismiss="modal">
+														Close
+													</button>
+													<button type="button" className="btn btn-primary">
+														Understood
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								) : (
+									<div></div>
+								)}
 							</div>
+
 							<div className="row">
 								<button
 									name="delete"
 									onClick={(event) => buttonClick(event, index)}
-									className="btn btn-outline-dark">
+									className="btn btn-danger">
 									Delete Post!
 								</button>
 							</div>

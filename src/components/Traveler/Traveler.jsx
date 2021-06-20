@@ -27,14 +27,21 @@ const Travelers = () => {
 			<div className="container">
 				<div className="row">
 					{otherUsers.map((user, index) => (
-						<div key={index} className="card" style={{ width: "11em" }}>
+						<div key={index} className="image-icon" style={{ width: "11em" }}>
+							<p>
+								<small>{"Wishlist Parks: " + user.wishListParks.length}</small>
+							</p>
+							<p>
+								<small>{"Visited Parks: " + user.visitedParks.length}</small>
+							</p>
 							<Link
 								to={{
 									pathname: "/specificTraveler",
 									state: { users: otherUsers, index: index },
 								}}>
-								<p>{user.firstName + " " + user.lastName}</p>
+								<img src={user.icon} />
 							</Link>
+							<h4>{user.firstName + " " + user.lastName}</h4>
 						</div>
 					))}
 				</div>

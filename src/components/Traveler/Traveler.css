@@ -4,3 +4,16 @@
 	justify-content: center;
 	display: flex;
 }
+
+.image-icon {
+	flex-basis: 33.33333%;
+	display: block;
+	text-align: center;
+	border-radius: 25px;
+	border: 1px solid #edeeeb;
+	padding: 20px;
+}
+
+img {
+	border-radius: 50%;
+}

@@ -1,64 +1,68 @@
 import React from "react";
 import "./EditPost.css";
-import useForm from "../UseForm/UseForm";
-import { useAppContext } from "../../libs/contextLib";
-import axios from "axios";
-import NavBar from "../NavBar/NavBar";
 
-const AddPost = () => {
-	const { values, handleChange, handleSubmit, clearValues } =
-		useForm(submitPost);
-	const { loggedInUser, setLoggedInUser, headers } = useAppContext();
-
-	function submitPost() {
-		console.log(values);
-		axios
-			.post(
-				`http://localhost:5000/api/posts/${loggedInUser._id}/post`,
-				values,
-				headers
-			)
-			.then((response) =>
-				setLoggedInUser({ ...loggedInUser, posts: response.data })
-			)
-			.catch((error) => {
-				console.log(error);
-			});
-		clearValues();
-	}
-
+function EditPost() {
 	return (
-		<div className="row text-center">
-			<NavBar tabActive="1" />
-			<div className="col">
-				<h6 className="subtitle">Would you like to post a review?</h6>
-			</div>
-			<div className="post-form">
-				<form onSubmit={handleSubmit}>
-					<div className="input-group mb-3">
-						<textarea
-							name="text"
-							type="text"
-							cols="60"
-							rows="5"
-							className="form-control"
-							placeholder="Type away!"
-							aria-label="Post time"
-							aria-describedby="post-button"
-							onChange={handleChange}
-							value={values.text || ""}
-						/>
+		<div
+			className="modal fade"
+			id="staticBackdrop"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabIndex="-1"
+			aria-labelledby="staticBackdropLabel"
+			aria-hidden="true">
+			<div className="modal-dialog">
+				<div className="modal-content">
+					<div className="modal-header">
+						<h5 className="modal-title" id="staticBackdropLabel">
+							Modal title
+						</h5>
 						<button
-							className="btn btn-outline-dark"
-							type="submit"
-							id="post-button">
-							Post!
+							type="button"
+							className="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div className="modal-body">...</div>
+					<div className="modal-footer">
+						<button
+							type="button"
+							className="btn btn-secondary"
+							data-bs-dismiss="modal">
+							Close
+						</button>
+						<button type="button" className="btn btn-primary">
+							Understood
 						</button>
 					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	);
-};
+}
 
-export default AddPost;
+export default EditPost;
+
+/* <div>
+			<div className="modalBackground">
+				<div className="modalContainer">
+					<div className="close-button">
+						<button onClick={() => setOpenModal(false)}> X </button>
+					</div>
+					<div className="title">
+						<h1>Edit Post!</h1>
+					</div>
+					<div className="body">
+						<p>This is where we are going to edit the post.</p>
+					</div>
+					<div className="footer">
+						<button
+							className="btn btn-danger"
+							onClick={() => setOpenModal(false)}>
+							Cancel
+						</button>
+						<button className="btn btn-success">Continue</button>
+					</div>
+				</div>
+			</div>
+		</div> */
