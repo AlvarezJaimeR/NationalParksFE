@@ -146,7 +146,11 @@ const Main = () => {
 										<Link
 											to={{
 												pathname: "/specificPark",
-												state: { parks: parks, index: index },
+												state: {
+													parks: parks,
+													index: index,
+													name: park.fullName,
+												},
 											}}>
 											<img
 												className="park-picture"
@@ -182,7 +186,11 @@ const Main = () => {
 											<Link
 												to={{
 													pathname: "/specificPark",
-													state: { parks: parks, index: index },
+													state: {
+														parks: parks,
+														index: index,
+														name: park.fullName,
+													},
 												}}>
 												<p>{park.name + ", " + park.states}</p>
 											</Link>
@@ -210,7 +218,11 @@ const Main = () => {
 											<Link
 												to={{
 													pathname: "/specificPark",
-													state: { parks: parks, index: index },
+													state: {
+														parks: parks,
+														index: index,
+														name: park.fullName,
+													},
 												}}>
 												{/* 								<img
 									className="park-picture"

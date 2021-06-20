@@ -15,10 +15,12 @@ const SpecificPark = (props) => {
 	const [wishlist, setWishlist] = useState(false);
 	const [visitlist, setVisitlist] = useState(false);
 	const [specificUser, setSpecificUser] = useState();
+	const [currentPark, setCurrentPark] = useState([]);
 
 	useEffect(
 		() => {
 			console.log("passing");
+			getIndex();
 			getUser();
 		},
 		[],
@@ -26,6 +28,15 @@ const SpecificPark = (props) => {
 		[wishlist],
 		[visitlist]
 	);
+
+	function getIndex() {
+		console.log("getting index");
+		const tempPark = props.location.state.parks.filter(
+			(park) => park.fullName === props.location.state.name
+		);
+		console.log("filtered park", tempPark);
+		setCurrentPark(tempPark);
+	}
 
 	async function getUser() {
 		console.log(loggedInUser);
@@ -37,15 +48,11 @@ const SpecificPark = (props) => {
 				console.log(response.data.wishListParks);
 				console.log(response.data.visitedParks);
 				const removedWish = response.data.wishListParks.filter(
-					(park) =>
-						park.text ===
-						props.location.state.parks[props.location.state.index].fullName
+					(park) => park.text === props.location.state.name
 				);
 				console.log(removedWish);
 				const removedVisit = response.data.visitedParks.filter(
-					(parkV) =>
-						parkV.text ===
-						props.location.state.parks[props.location.state.index].fullName
+					(parkV) => parkV.text === props.location.state.name
 				);
 				console.log(removedVisit);
 				if (removedWish.length > 0) {
@@ -63,7 +70,7 @@ const SpecificPark = (props) => {
 			case "wishlist":
 				console.log("wishlist!");
 				const wishlistPark = {
-					text: props.location.state.parks[props.location.state.index].fullName,
+					text: props.location.state.name,
 				};
 				console.log(wishlistPark);
 				axios
@@ -74,6 +81,7 @@ const SpecificPark = (props) => {
 					)
 					.then((res) => {
 						console.log(res);
+						setSpecificUser(res.data);
 						setWishlist(true);
 						setUpdate(!update);
 					})
@@ -85,7 +93,7 @@ const SpecificPark = (props) => {
 			case "visited":
 				console.log("visited!");
 				const visitedPark = {
-					text: props.location.state.parks[props.location.state.index].fullName,
+					text: props.location.state.name,
 				};
 				console.log(visitedPark);
 				axios
@@ -108,9 +116,7 @@ const SpecificPark = (props) => {
 			case "wishlist remove":
 				console.log("remove wishlist!");
 				const wish = specificUser.wishListParks.filter(
-					(park) =>
-						park.text ===
-						props.location.state.parks[props.location.state.index].fullName
+					(park) => park.text === props.location.state.name
 				);
 				console.log(wish);
 				axios
@@ -133,9 +139,7 @@ const SpecificPark = (props) => {
 				console.log("remove visited list");
 				console.log(specificUser);
 				const visit = specificUser.visitedParks.filter(
-					(park) =>
-						park.text ===
-						props.location.state.parks[props.location.state.index].fullName
+					(park) => park.text === props.location.state.name
 				);
 				console.log(visit);
 				axios
@@ -146,8 +150,10 @@ const SpecificPark = (props) => {
 					)
 					.then((res) => {
 						console.log(res);
+						setSpecificUser(res.data);
 						setVisitlist(false);
 						setUpdate(!update);
+						setWishlist(false);
 					})
 					.catch((err) => {
 						console.log(err);
@@ -159,22 +165,15 @@ const SpecificPark = (props) => {
 		}
 	};
 
-	return (
+	return currentPark.length > 0 ? (
 		<div>
 			<div>
 				<NavBar tabActive="1" />
-				<h4 className="main">
-					{props.location.state.parks[props.location.state.index].fullName}
-				</h4>
+				<h4 className="main">{props.location.state.name}</h4>
 				<img
 					className="park-picture"
-					alt={
-						props.location.state.parks[props.location.state.index].images[0]
-							.altText
-					}
-					src={
-						props.location.state.parks[props.location.state.index].images[0].url
-					}
+					alt={currentPark[0].images[0].altText}
+					src={currentPark[0].images[0].url}
 				/>
 				{visitlist === false ? (
 					<div>
@@ -219,105 +218,60 @@ const SpecificPark = (props) => {
 
 				<div className="main-body">
 					<h5>Description:</h5>
-					<p>
-						{props.location.state.parks[props.location.state.index].description}
-					</p>
+					<p>{currentPark[0].description}</p>
 					<h5>Website url: </h5>
-					<a href={props.location.state.parks[props.location.state.index].url}>
-						{props.location.state.parks[props.location.state.index].url}
-					</a>
+					<a href={currentPark[0].url}>{currentPark[0].url}</a>
 					<div>
 						<h5>Directions info:</h5>
-						<p>
-							{
-								props.location.state.parks[props.location.state.index]
-									.directionsInfo
-							}
-						</p>
+						<p>{currentPark[0].directionsInfo}</p>
 					</div>
 					<div>
-						<h5>
-							{
-								props.location.state.parks[props.location.state.index]
-									.entranceFees[0].title
-							}
-						</h5>
-						<p>
-							$
-							{
-								props.location.state.parks[props.location.state.index]
-									.entranceFees[0].cost
-							}
-						</p>
+						<h5>{currentPark[0].entranceFees[0].title}</h5>
+						<p>${currentPark[0].entranceFees[0].cost}</p>
 					</div>
 					<div>
 						<h5>Standard operation hours:</h5>
 						<p>
 							Sunday:
-							{
-								props.location.state.parks[props.location.state.index]
-									.operatingHours[0].standardHours.sunday
-							}
+							{currentPark[0].operatingHours[0].standardHours.sunday}
 						</p>
 						<p>
 							Monday:
-							{
-								props.location.state.parks[props.location.state.index]
-									.operatingHours[0].standardHours.monday
-							}
+							{currentPark[0].operatingHours[0].standardHours.monday}
 						</p>
 						<p>
 							Tuesday:
-							{
-								props.location.state.parks[props.location.state.index]
-									.operatingHours[0].standardHours.tuesday
-							}
+							{currentPark[0].operatingHours[0].standardHours.tuesday}
 						</p>
 						<p>
 							Wednesday:
-							{
-								props.location.state.parks[props.location.state.index]
-									.operatingHours[0].standardHours.wednesday
-							}
+							{currentPark[0].operatingHours[0].standardHours.wednesday}
 						</p>
 						<p>
 							Thursday:
-							{
-								props.location.state.parks[props.location.state.index]
-									.operatingHours[0].standardHours.thursday
-							}
+							{currentPark[0].operatingHours[0].standardHours.thursday}
 						</p>
 						<p>
 							Friday:
-							{
-								props.location.state.parks[props.location.state.index]
-									.operatingHours[0].standardHours.friday
-							}
+							{currentPark[0].operatingHours[0].standardHours.friday}
 						</p>
 						<p>
 							Saturday:
-							{
-								props.location.state.parks[props.location.state.index]
-									.operatingHours[0].standardHours.saturday
-							}
+							{currentPark[0].operatingHours[0].standardHours.saturday}
 						</p>
 					</div>
 				</div>
 				<div>
-					<AddPost
-						parkName={
-							props.location.state.parks[props.location.state.index].fullName
-						}
-					/>
+					<AddPost parkName={props.location.state.name} />
 				</div>
 				<div>
-					<PostFeed
-						parkName={
-							props.location.state.parks[props.location.state.index].fullName
-						}
-					/>
+					<PostFeed parkName={props.location.state.name} />
 				</div>
 			</div>
+		</div>
+	) : (
+		<div>
+			<h1>Loading...</h1>
 		</div>
 	);
 };
