@@ -129,22 +129,34 @@ const Main = () => {
 				<div>
 					<div className="container">
 						<div className="row">
-							{filteredVisit.map((park, index) => (
-								<div key={index} className="card" style={{ width: "11em" }}>
-									<Link
-										to={{
-											pathname: "/specificPark",
-											state: { parks: parks, index: index },
-										}}>
-										<img
-											className="park-picture"
-											alt={park.images[0].altText}
-											src={park.images[0].url}
-										/>
-										<p>{park.name + ", " + park.states}</p>
-									</Link>
-								</div>
-							))}
+							{filteredVisit
+								.filter((park) => {
+									if (searchName === "") {
+										return park;
+									} else if (
+										park.fullName
+											.toLowerCase()
+											.includes(searchName.toLowerCase())
+									) {
+										return park;
+									}
+								})
+								.map((park, index) => (
+									<div key={index} className="card" style={{ width: "11em" }}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: { parks: parks, index: index },
+											}}>
+											<img
+												className="park-picture"
+												alt={park.images[0].altText}
+												src={park.images[0].url}
+											/>
+											<p>{park.name + ", " + park.states}</p>
+										</Link>
+									</div>
+								))}
 						</div>
 					</div>
 				</div>
@@ -153,17 +165,29 @@ const Main = () => {
 					{filterWishLogic === true && filterVisitLogic === false ? (
 						<div className="container">
 							<div className="row">
-								{filteredWish.map((park, index) => (
-									<div key={index} className="card" style={{ width: "11em" }}>
-										<Link
-											to={{
-												pathname: "/specificPark",
-												state: { parks: parks, index: index },
-											}}>
-											<p>{park.name + ", " + park.states}</p>
-										</Link>
-									</div>
-								))}
+								{filteredWish
+									.filter((park) => {
+										if (searchName === "") {
+											return park;
+										} else if (
+											park.fullName
+												.toLowerCase()
+												.includes(searchName.toLowerCase())
+										) {
+											return park;
+										}
+									})
+									.map((park, index) => (
+										<div key={index} className="card" style={{ width: "11em" }}>
+											<Link
+												to={{
+													pathname: "/specificPark",
+													state: { parks: parks, index: index },
+												}}>
+												<p>{park.name + ", " + park.states}</p>
+											</Link>
+										</div>
+									))}
 							</div>
 						</div>
 					) : (
