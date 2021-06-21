@@ -2,6 +2,7 @@ import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect } from "react";
 import { useAppContext } from "../../libs/contextLib";
 import "./SpecificTraveler.css";
+import { Link } from "react-router-dom";
 
 const SpecificTraveler = (props) => {
 	console.log(props.location.state);
@@ -30,7 +31,7 @@ const SpecificTraveler = (props) => {
 			}
 		});
 		setFilteredVisit(filterVisit);
-	});
+	}, []);
 	return (
 		<div>
 			<NavBar tabActive="2" />
@@ -56,8 +57,17 @@ const SpecificTraveler = (props) => {
 							<div key={index}>
 								<div>
 									<div>
-										<p>{wish.text}</p>
-										{console.log(wish.text)}
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: wish.text,
+												},
+											}}>
+											<p>{wish.text}</p>
+											{console.log(wish.text)}
+										</Link>
 									</div>
 								</div>
 							</div>
@@ -67,7 +77,7 @@ const SpecificTraveler = (props) => {
 			) : (
 				<div>
 					<p>Wishlist Parks:</p>
-					<p>This user currently doesn't have any parks on their wishlist.</p>
+					<p>This traveler doesn't have any parks on their wishlist.</p>
 				</div>
 			)}
 			{props.location.state.users[props.location.state.index].visitedParks
@@ -81,8 +91,17 @@ const SpecificTraveler = (props) => {
 							<div key={index}>
 								<div>
 									<div>
-										<p>{visited.text}</p>
-										{console.log(visited.text)}
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: visited.text,
+												},
+											}}>
+											<p>{visited.text}</p>
+											{console.log(visited.text)}
+										</Link>
 									</div>
 								</div>
 							</div>
@@ -92,7 +111,7 @@ const SpecificTraveler = (props) => {
 			) : (
 				<div>
 					<p>Visited Parks:</p>
-					<p>This user has not been able to visit a park.</p>
+					<p>This traveler has not been able to visit a park.</p>
 				</div>
 			)}
 		</div>

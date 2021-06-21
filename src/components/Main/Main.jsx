@@ -148,7 +148,6 @@ const Main = () => {
 												pathname: "/specificPark",
 												state: {
 													parks: parks,
-													index: index,
 													name: park.fullName,
 												},
 											}}>
@@ -188,7 +187,6 @@ const Main = () => {
 													pathname: "/specificPark",
 													state: {
 														parks: parks,
-														index: index,
 														name: park.fullName,
 													},
 												}}>
@@ -220,7 +218,6 @@ const Main = () => {
 													pathname: "/specificPark",
 													state: {
 														parks: parks,
-														index: index,
 														name: park.fullName,
 													},
 												}}>
