@@ -2,6 +2,7 @@ import NavBar from "../NavBar/NavBar";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	const [parks, setParks] = useState([]);
@@ -83,13 +84,20 @@ const Home = () => {
 								</div>
 								<div className="carousel-inner">
 									<div className="carousel-item active">
-										<a href={parks[0].url}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: parks[0].fullName,
+												},
+											}}>
 											<img
 												src={parks[0].images[0].url}
 												className="w-100 carousel-image"
 												alt={parks[0].images[0].altText}
 											/>
-										</a>
+										</Link>
 										<div className="carousel-caption ">
 											<h6>
 												{parks[0].fullName} {" , "} {parks[0].states}
@@ -97,13 +105,20 @@ const Home = () => {
 										</div>
 									</div>
 									<div className="carousel-item">
-										<a href={parks[1].url}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: parks[1].fullName,
+												},
+											}}>
 											<img
 												src={parks[1].images[0].url}
 												className="w-100 carousel-image"
 												alt={parks[1].images[0].altText}
 											/>
-										</a>
+										</Link>
 										<div className="carousel-caption ">
 											<h6>
 												{parks[1].fullName} {" , "} {parks[1].states}
@@ -111,13 +126,20 @@ const Home = () => {
 										</div>
 									</div>
 									<div className="carousel-item">
-										<a href={parks[2].url}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: parks[2].fullName,
+												},
+											}}>
 											<img
 												src={parks[2].images[4].url}
 												className="w-100 carousel-image"
 												alt={parks[2].images[4].altText}
 											/>
-										</a>
+										</Link>
 										<div className="carousel-caption d">
 											<h6>
 												{parks[2].fullName} {" , "} {parks[2].states}
@@ -125,13 +147,20 @@ const Home = () => {
 										</div>
 									</div>
 									<div className="carousel-item">
-										<a href={parks[3].url}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: parks[3].fullName,
+												},
+											}}>
 											<img
-												src={parks[3].images[0].url}
+												src={parks[3].images[3].url}
 												className="w-100 carousel-image"
-												alt={parks[3].images[0].altText}
+												alt={parks[3].images[3].altText}
 											/>
-										</a>
+										</Link>
 										<div className="carousel-caption d">
 											<h6>
 												{parks[3].fullName} {" , "} {parks[3].states}
@@ -139,13 +168,20 @@ const Home = () => {
 										</div>
 									</div>
 									<div className="carousel-item">
-										<a href={parks[4].url}>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: parks[4].fullName,
+												},
+											}}>
 											<img
 												src={parks[4].images[0].url}
 												className="w-100 carousel-image"
 												alt={parks[4].images[0].altText}
 											/>
-										</a>
+										</Link>
 										<div className="carousel-caption d">
 											<h6>
 												{parks[4].fullName} {" , "} {parks[4].states}
