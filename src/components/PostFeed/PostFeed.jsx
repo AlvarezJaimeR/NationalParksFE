@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./PostFeed.css";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
+import EditPost from "../EditPost/EditPost";
 
 const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
 	const [update, setUpdate] = useState(false);
-	const [openModal, setOpenModal] = useState(false);
+	const [openModal, setOpenModal] = useState(true);
 	//console.log("post feed props", props);
 
 	const buttonClick = (event, post) => {
@@ -97,42 +98,7 @@ const PostFeed = (props) => {
 									name="edit">
 									Edit Post!
 								</button>
-								{openModal === true ? (
-									<div
-										className="modal fade"
-										id="staticBackdrop"
-										data-bs-backdrop="static"
-										data-bs-keyboard="false"
-										aria-labelledby="staticBackdropLabel"
-										aria-hidden="true">
-										<div className="modal-dialog">
-											<div className="modal-content">
-												<div className="modal-header">
-													<h5 className="modal-title" id="staticBackdropLabel">
-														Modal title
-													</h5>
-													<button
-														className="btn-close"
-														data-bs-dismiss="modal"
-														aria-label="Close"></button>
-												</div>
-												<div className="modal-body">...</div>
-												<div className="modal-footer">
-													<button
-														className="btn btn-secondary"
-														data-bs-dismiss="modal">
-														Close
-													</button>
-													<button type="button" className="btn btn-primary">
-														Understood
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								) : (
-									<div></div>
-								)}
+								{openModal === true ? <EditPost /> : <div></div>}
 							</div>
 							<div className="row">
 								<button
