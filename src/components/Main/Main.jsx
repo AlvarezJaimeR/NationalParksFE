@@ -95,7 +95,7 @@ const Main = () => {
 		<div>
 			<NavBar tabActive="1" />
 			<h1 className="main">National Parks!</h1>
-			<div>
+			<div className="search-bar">
 				<input
 					className="input-field"
 					type="text"
@@ -105,7 +105,7 @@ const Main = () => {
 					}}
 				/>
 			</div>
-			<div className="container">
+			<div className="container button-list">
 				<button onClick={(event) => buttonClick(event)} name="filter all">
 					Filter by all
 				</button>
@@ -142,7 +142,10 @@ const Main = () => {
 									}
 								})
 								.map((park, index) => (
-									<div key={index} className="card" style={{ width: "11em" }}>
+									<div
+										key={index}
+										className="card-visit"
+										style={{ width: "11em" }}>
 										<Link
 											to={{
 												pathname: "/specificPark",
@@ -181,7 +184,10 @@ const Main = () => {
 										}
 									})
 									.map((park, index) => (
-										<div key={index} className="card" style={{ width: "11em" }}>
+										<div
+											key={index}
+											className="card-wish"
+											style={{ width: "11em" }}>
 											<Link
 												to={{
 													pathname: "/specificPark",
@@ -230,7 +236,7 @@ const Main = () => {
 																	name: park.fullName,
 																},
 															}}>
-															<p className="park-state">
+															<p className="park-state-wish">
 																{park.name + ", " + park.states}
 															</p>
 														</Link>
@@ -255,12 +261,12 @@ const Main = () => {
 																	name: park.fullName,
 																},
 															}}>
-															<img
+															{/* 															<img
 																className="park-picture"
 																alt={park.images[0].altText}
 																src={park.images[0].url}
-															/>
-															<p className="park-state">
+															/> */}
+															<p className="park-state-visit">
 																{park.name + ", " + park.states}
 															</p>
 														</Link>
@@ -271,7 +277,7 @@ const Main = () => {
 										return (
 											<div
 												key={index}
-												className="card"
+												className="card-all"
 												style={{ width: "11em" }}>
 												<Link
 													to={{
