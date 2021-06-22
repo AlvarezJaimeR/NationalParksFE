@@ -17,3 +17,30 @@
 	font-size: 16px;
 	padding-left: 10px;
 }
+
+.card {
+	background-color: darkgoldenrod !important;
+	flex-basis: 25%;
+	display: block;
+	text-align: center;
+	border-radius: 25px;
+	border: 1px solid #edeeeb;
+	padding: 20px;
+}
+
+.park-state:hover {
+	color: red;
+}
+
+.park-state {
+	color: white;
+	text-align: center;
+}
+
+.card-wish {
+	background-color: yellow !important;
+}
+
+.card-visit {
+	background-color: white important!;
+}

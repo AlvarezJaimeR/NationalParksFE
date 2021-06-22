@@ -41,31 +41,11 @@ const Main = () => {
 				break;
 			case "filter wishlist":
 				console.log("filter wishlist");
-				console.log(specificUser.wishListParks);
-				const filterWish = parks.filter((park) => {
-					for (let i = 0; i < specificUser.wishListParks.length; i++) {
-						if (park.fullName === specificUser.wishListParks[i].text) {
-							return park;
-						}
-					}
-				});
-				console.log(filterWish);
-				setFilteredWish(filterWish);
 				setFilterWishLogic(true);
 				setFilterVisitLogic(false);
 				break;
 			case "filter visited":
 				console.log("filter visted");
-				console.log(specificUser.visitedParks);
-				const filterVisit = parks.filter((park) => {
-					for (let i = 0; i < specificUser.visitedParks.length; i++) {
-						if (park.fullName === specificUser.visitedParks[i].text) {
-							return park;
-						}
-					}
-				});
-				console.log(filterVisit);
-				setFilteredVisit(filterVisit);
 				setFilterWishLogic(false);
 				setFilterVisitLogic(true);
 				break;
@@ -88,6 +68,26 @@ const Main = () => {
 				setSpecificUser(response.data);
 				console.log(response.data.wishListParks);
 				console.log(response.data.visitedParks);
+			})
+			.then(() => {
+				const filterWish = parks.filter((park) => {
+					for (let i = 0; i < specificUser.wishListParks.length; i++) {
+						if (park.fullName === specificUser.wishListParks[i].text) {
+							return park;
+						}
+					}
+				});
+				console.log(filterWish);
+				setFilteredWish(filterWish);
+				const filterVisit = parks.filter((park) => {
+					for (let i = 0; i < specificUser.visitedParks.length; i++) {
+						if (park.fullName === specificUser.visitedParks[i].text) {
+							return park;
+						}
+					}
+				});
+				console.log(filterVisit);
+				setFilteredVisit(filterVisit);
 			});
 	}
 
@@ -211,25 +211,83 @@ const Main = () => {
 											return park;
 										}
 									})
-									.map((park, index) => (
-										<div key={index} className="card" style={{ width: "11em" }}>
-											<Link
-												to={{
-													pathname: "/specificPark",
-													state: {
-														parks: parks,
-														name: park.fullName,
-													},
-												}}>
-												{/* 								<img
-									className="park-picture"
-									alt={park.images[0].altText}
-									src={park.images[0].url}
-								/> */}
-												<p>{park.name + ", " + park.states}</p>
-											</Link>
-										</div>
-									))}
+									.map((park, index) => {
+										for (let i = 0; i < filteredWish.length; i++) {
+											if (
+												filteredWish[i].fullName.includes(park.fullName) ===
+												true
+											)
+												return (
+													<div
+														key={index}
+														className="card-wish"
+														style={{ width: "11em" }}>
+														<Link
+															to={{
+																pathname: "/specificPark",
+																state: {
+																	parks: parks,
+																	name: park.fullName,
+																},
+															}}>
+															<p className="park-state">
+																{park.name + ", " + park.states}
+															</p>
+														</Link>
+													</div>
+												);
+										}
+										for (let j = 0; j < filteredVisit.length; j++) {
+											if (
+												filteredVisit[j].fullName.includes(park.fullName) ===
+												true
+											) {
+												return (
+													<div
+														key={index}
+														className="card-visit"
+														style={{ width: "11em" }}>
+														<Link
+															to={{
+																pathname: "/specificPark",
+																state: {
+																	parks: parks,
+																	name: park.fullName,
+																},
+															}}>
+															<img
+																className="park-picture"
+																alt={park.images[0].altText}
+																src={park.images[0].url}
+															/>
+															<p className="park-state">
+																{park.name + ", " + park.states}
+															</p>
+														</Link>
+													</div>
+												);
+											}
+										}
+										return (
+											<div
+												key={index}
+												className="card"
+												style={{ width: "11em" }}>
+												<Link
+													to={{
+														pathname: "/specificPark",
+														state: {
+															parks: parks,
+															name: park.fullName,
+														},
+													}}>
+													<p className="park-state">
+														{park.name + ", " + park.states}
+													</p>
+												</Link>
+											</div>
+										);
+									})}
 							</div>
 						</div>
 					)}

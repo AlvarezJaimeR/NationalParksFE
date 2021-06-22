@@ -39,8 +39,8 @@ const SpecificPark = (props) => {
 		setCurrentPark(tempPark);
 		console.log(tempPark[0].latitude);
 		console.log(tempPark[0].longitude);
-		console.log(process.env.REACT_APP_WTHR_API_KEY);
-		axios
+		setFinished(true);
+		/* 		axios
 			.get(
 				`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
 			)
@@ -51,7 +51,7 @@ const SpecificPark = (props) => {
 			.catch((error) => {
 				console.log(error);
 				alert(error.response.data);
-			});
+			}); */
 	}
 
 	async function getUser() {
@@ -276,7 +276,7 @@ const SpecificPark = (props) => {
 							{currentPark[0].operatingHours[0].standardHours.saturday}
 						</p>
 					</div>
-					<div>
+					{/* 					<div>
 						<h5>Current weather:</h5>
 						<p>{weather.location.localtime}</p>
 						<p>{weather.current.temperature}</p>
@@ -285,7 +285,7 @@ const SpecificPark = (props) => {
 							alt={weather.current.weather_descriptions}
 						/>
 						<p>{weather.current.weather_descriptions}</p>
-					</div>
+					</div> */}
 				</div>
 				<div>
 					{visitlist === true ? (
