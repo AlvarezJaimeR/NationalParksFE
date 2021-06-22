@@ -45,11 +45,6 @@ const SpecificPark = (props) => {
 				`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
 			)
 			.then((response) => {
-				console.log(response);
-				console.log(response.data.location.localtime);
-				console.log(response.data.current.temperature);
-				console.log(response.data.current.weather_icons);
-				console.log(response.data.current.weather_descriptions);
 				setWeather(response.data);
 				setFinished(true);
 			})
@@ -282,7 +277,7 @@ const SpecificPark = (props) => {
 						</p>
 					</div>
 					<div>
-						<h5>Weather:</h5>
+						<h5>Current weather:</h5>
 						<p>{weather.location.localtime}</p>
 						<p>{weather.current.temperature}</p>
 						<img
@@ -293,10 +288,18 @@ const SpecificPark = (props) => {
 					</div>
 				</div>
 				<div>
-					<AddPost parkName={props.location.state.name} />
-				</div>
-				<div>
-					<PostFeed parkName={props.location.state.name} />
+					{visitlist === true ? (
+						<div>
+							<div>
+								<AddPost parkName={props.location.state.name} />
+							</div>
+							<div>
+								<PostFeed parkName={props.location.state.name} />
+							</div>
+						</div>
+					) : (
+						<div></div>
+					)}
 				</div>
 			</div>
 		</div>
