@@ -16,11 +16,13 @@ const SpecificPark = (props) => {
 	const [visitlist, setVisitlist] = useState(false);
 	const [specificUser, setSpecificUser] = useState();
 	const [currentPark, setCurrentPark] = useState([]);
+	const [weather, setWeather] = useState({});
+	const [finished, setFinished] = useState(false);
 
 	useEffect(
 		() => {
 			console.log("passing");
-			getIndex();
+			getWeather();
 			getUser();
 		},
 		[],
@@ -29,13 +31,32 @@ const SpecificPark = (props) => {
 		[visitlist]
 	);
 
-	function getIndex() {
-		console.log("getting index");
+	async function getWeather() {
 		const tempPark = props.location.state.parks.filter(
 			(park) => park.fullName === props.location.state.name
 		);
 		console.log("filtered park", tempPark);
 		setCurrentPark(tempPark);
+		console.log(tempPark[0].latitude);
+		console.log(tempPark[0].longitude);
+		console.log(process.env.REACT_APP_WTHR_API_KEY);
+		axios
+			.get(
+				`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
+			)
+			.then((response) => {
+				console.log(response);
+				console.log(response.data.location.localtime);
+				console.log(response.data.current.temperature);
+				console.log(response.data.current.weather_icons);
+				console.log(response.data.current.weather_descriptions);
+				setWeather(response.data);
+				setFinished(true);
+			})
+			.catch((error) => {
+				console.log(error);
+				alert(error.response.data);
+			});
 	}
 
 	async function getUser() {
@@ -165,7 +186,7 @@ const SpecificPark = (props) => {
 		}
 	};
 
-	return currentPark.length > 0 ? (
+	return finished === true ? (
 		<div>
 			<div>
 				<NavBar tabActive="1" />
@@ -259,6 +280,16 @@ const SpecificPark = (props) => {
 							Saturday:
 							{currentPark[0].operatingHours[0].standardHours.saturday}
 						</p>
+					</div>
+					<div>
+						<h5>Weather:</h5>
+						<p>{weather.location.localtime}</p>
+						<p>{weather.current.temperature}</p>
+						<img
+							src={weather.current.weather_icons}
+							alt={weather.current.weather_descriptions}
+						/>
+						<p>{weather.current.weather_descriptions}</p>
 					</div>
 				</div>
 				<div>
