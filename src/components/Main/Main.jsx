@@ -144,8 +144,8 @@ const Main = () => {
 								.map((park, index) => (
 									<div
 										key={index}
-										className="card-visit"
-										style={{ width: "11em" }}>
+										className="card-all visit"
+										style={{ height: "13em", width: "11em" }}>
 										<Link
 											to={{
 												pathname: "/specificPark",
@@ -186,8 +186,8 @@ const Main = () => {
 									.map((park, index) => (
 										<div
 											key={index}
-											className="card-wish"
-											style={{ width: "11em" }}>
+											className="card-all wish"
+											style={{ height: "13em", width: "11em" }}>
 											<Link
 												to={{
 													pathname: "/specificPark",
@@ -226,8 +226,8 @@ const Main = () => {
 												return (
 													<div
 														key={index}
-														className="card-wish"
-														style={{ width: "11em" }}>
+														className="card-all wish"
+														style={{ height: "13em", width: "11em" }}>
 														<Link
 															to={{
 																pathname: "/specificPark",
@@ -251,8 +251,8 @@ const Main = () => {
 												return (
 													<div
 														key={index}
-														className="card-visit"
-														style={{ width: "11em" }}>
+														className="card-all visit"
+														style={{ height: "13em", width: "11em" }}>
 														<Link
 															to={{
 																pathname: "/specificPark",
@@ -277,8 +277,8 @@ const Main = () => {
 										return (
 											<div
 												key={index}
-												className="card-all"
-												style={{ width: "11em" }}>
+												className="card-all all"
+												style={{ height: "13em", width: "11em" }}>
 												<Link
 													to={{
 														pathname: "/specificPark",

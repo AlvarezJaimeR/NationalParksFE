@@ -20,60 +20,56 @@
 
 .park-state:hover {
 	color: red;
+	flex-grow: 1;
 }
 
 .park-state {
 	color: white;
 	text-align: center;
+	flex-grow: 1;
 }
 
 .park-state-wish {
 	color: black;
+	flex-grow: 1;
 }
 
 .park-state-visit {
 	color: black;
+	flex-grow: 1;
 }
 
 .park-state-wish:hover {
 	color: red;
+	flex-grow: 1;
 }
 
 .park-state-visit:hover {
 	color: red;
+	flex-grow: 1;
 }
 
 .card-all {
+	display: flex;
+	text-align: center;
+	border-radius: 25px;
+	border: 5px solid #edeeeb;
+	flex-direction: column;
+	padding: 20px;
+	margin: 5px;
+	vertical-align: middle;
+}
+
+.all {
 	background-color: darkgoldenrod !important;
-	flex-basis: 32%;
-	display: block;
-	text-align: center;
-	border-radius: 25px;
-	border: 5px solid #edeeeb;
-	padding: 20px;
-	margin: 5px;
 }
 
-.card-wish {
+.wish {
 	background-color: rgb(255, 255, 0) !important;
-	flex-basis: 32%;
-	display: block;
-	text-align: center;
-	border-radius: 25px;
-	border: 5px solid #edeeeb;
-	padding: 20px;
-	margin: 5px;
 }
 
-.card-visit {
+.visit {
 	background-color: green !important;
-	flex-basis: 32%;
-	display: block;
-	text-align: center;
-	border-radius: 25px;
-	border: 5px solid #edeeeb;
-	padding: 20px;
-	margin: 5px;
 }
 
 .search-bar {

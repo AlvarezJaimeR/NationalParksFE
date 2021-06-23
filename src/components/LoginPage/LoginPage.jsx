@@ -18,7 +18,7 @@ const LoginPage = () => {
 				localStorage.setItem("token", response.data);
 				userHasAuthenticated(true);
 				setJwt(localStorage.getItem("token"));
-				history.push("/allParks");
+				history.push("/");
 			})
 			.catch((error) => {
 				console.log(error);
