@@ -261,11 +261,11 @@ const Main = () => {
 																	name: park.fullName,
 																},
 															}}>
-															{/* 															<img
+															<img
 																className="park-picture"
 																alt={park.images[0].altText}
 																src={park.images[0].url}
-															/> */}
+															/>
 															<p className="park-state-visit">
 																{park.name + ", " + park.states}
 															</p>
