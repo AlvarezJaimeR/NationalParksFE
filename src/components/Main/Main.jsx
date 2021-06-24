@@ -113,7 +113,7 @@ const Main = () => {
 					className="btn-list btn-outline-secondary">
 					Filter Parks
 				</button>
-				<ul className="dropdown-menu" aria-labelledby="btnGroupDrop1">
+				<ul className="dropdown-menu">
 					<button
 						className="btn-secondary"
 						onClick={(event) => buttonClick(event)}
@@ -140,7 +140,7 @@ const Main = () => {
 					id="btnGroupDrop2">
 					Sort Parks
 				</button>
-				<ul className="dropdown-menu" aria-labeledby="btnGroupDrop2">
+				<ul className="dropdown-menu">
 					<button
 						className="btn-secondary"
 						onClick={(event) => buttonClick(event)}
@@ -191,7 +191,7 @@ const Main = () => {
 												},
 											}}>
 											<img
-												className="park-picture"
+												className="park-visit-picture"
 												alt={park.images[0].altText}
 												src={park.images[0].url}
 											/>
@@ -298,7 +298,7 @@ const Main = () => {
 																},
 															}}>
 															<img
-																className="park-picture"
+																className="park-visit-picture"
 																alt={park.images[0].altText}
 																src={park.images[0].url}
 															/>
