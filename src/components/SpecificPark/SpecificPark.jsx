@@ -192,90 +192,92 @@ const SpecificPark = (props) => {
 					src={currentPark[0].images[0].url}
 				/>
 				{visitlist === false ? (
-					<div>
+					<div className="btn-list">
 						{wishlist === false ? (
-							<div>
-								<button
-									name="wishlist"
-									onClick={(event) => buttonClick(event)}
-									className="btn btn-outline-dark">
-									Add to Wishlist!
-								</button>
-							</div>
-						) : (
-							<div>
-								<button
-									name="wishlist remove"
-									onClick={(event) => buttonClick(event)}
-									className="btn btn-outline-dark">
-									Remove from wish list!
-								</button>
-							</div>
-						)}
-						<div>
 							<button
-								name="visited"
+								name="wishlist"
 								onClick={(event) => buttonClick(event)}
 								className="btn btn-outline-dark">
-								Click here if you visited the park!
+								Add to Wishlist!
 							</button>
-						</div>
+						) : (
+							<button
+								name="wishlist remove"
+								onClick={(event) => buttonClick(event)}
+								className="btn btn-outline-dark">
+								Remove from wish list!
+							</button>
+						)}
+
+						<button
+							name="visited"
+							onClick={(event) => buttonClick(event)}
+							className="btn btn-outline-dark">
+							Click here if you visited the park!
+						</button>
 					</div>
 				) : (
-					<div>
+					<div className="btn-visit">
 						<button
 							name="visited remove"
 							onClick={(event) => buttonClick(event)}
-							className="btn btn-outline-dark">
+							className="btn btn-outline-dark ">
 							Remove from visited list!
 						</button>
 					</div>
 				)}
 
-				<div className="main-body">
-					<h5>Description:</h5>
-					<p>{currentPark[0].description}</p>
-					<h5>Website url: </h5>
-					<a href={currentPark[0].url}>{currentPark[0].url}</a>
-					<div>
-						<h5>Directions info:</h5>
-						<p>{currentPark[0].directionsInfo}</p>
+				<div className="container description-box">
+					<div className="row">
+						<div className="col col-lg-7">
+							<h5>Description:</h5>
+							<p>{currentPark[0].description}</p>
+							<div className="web-url">
+								<h5>Website url: </h5>
+								<a href={currentPark[0].url}>{currentPark[0].url}</a>
+							</div>
+
+							<h5>Directions info:</h5>
+							<p>{currentPark[0].directionsInfo}</p>
+						</div>
+
+						<div className="col col-lg-2">
+							<h5>{currentPark[0].entranceFees[0].title}</h5>
+							<p>${currentPark[0].entranceFees[0].cost}</p>
+						</div>
+						<div className="col col-lg-3">
+							<h5>Standard operation hours:</h5>
+							<p>
+								Sunday:
+								{currentPark[0].operatingHours[0].standardHours.sunday}
+							</p>
+							<p>
+								Monday:
+								{currentPark[0].operatingHours[0].standardHours.monday}
+							</p>
+							<p>
+								Tuesday:
+								{currentPark[0].operatingHours[0].standardHours.tuesday}
+							</p>
+							<p>
+								Wednesday:
+								{currentPark[0].operatingHours[0].standardHours.wednesday}
+							</p>
+							<p>
+								Thursday:
+								{currentPark[0].operatingHours[0].standardHours.thursday}
+							</p>
+							<p>
+								Friday:
+								{currentPark[0].operatingHours[0].standardHours.friday}
+							</p>
+							<p>
+								Saturday:
+								{currentPark[0].operatingHours[0].standardHours.saturday}
+							</p>
+						</div>
 					</div>
-					<div>
-						<h5>{currentPark[0].entranceFees[0].title}</h5>
-						<p>${currentPark[0].entranceFees[0].cost}</p>
-					</div>
-					<div>
-						<h5>Standard operation hours:</h5>
-						<p>
-							Sunday:
-							{currentPark[0].operatingHours[0].standardHours.sunday}
-						</p>
-						<p>
-							Monday:
-							{currentPark[0].operatingHours[0].standardHours.monday}
-						</p>
-						<p>
-							Tuesday:
-							{currentPark[0].operatingHours[0].standardHours.tuesday}
-						</p>
-						<p>
-							Wednesday:
-							{currentPark[0].operatingHours[0].standardHours.wednesday}
-						</p>
-						<p>
-							Thursday:
-							{currentPark[0].operatingHours[0].standardHours.thursday}
-						</p>
-						<p>
-							Friday:
-							{currentPark[0].operatingHours[0].standardHours.friday}
-						</p>
-						<p>
-							Saturday:
-							{currentPark[0].operatingHours[0].standardHours.saturday}
-						</p>
-					</div>
+
 					{/* 					<div>
 						<h5>Current weather:</h5>
 						<p>{weather.location.localtime}</p>

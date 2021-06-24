@@ -5,11 +5,6 @@
 	display: flex;
 }
 
-.container {
-	display: flex;
-	justify-content: center;
-}
-
 .input-field {
 	margin-top: 20px;
 	width: 300px;
@@ -79,4 +74,6 @@
 
 .button-list {
 	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
 }

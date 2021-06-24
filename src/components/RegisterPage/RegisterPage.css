@@ -16,3 +16,8 @@ img {
 	border-radius: 10px;
 	border-color: lightblue;
 }
+
+.icon-pick {
+	text-align: center;
+	vertical-align: middle;
+}

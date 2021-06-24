@@ -134,17 +134,31 @@ const RegisterPage = () => {
 								{errors.confirmPassword ? `${errors.confirmPassword}` : null}
 							</p>
 						</div>
-						<div>
-							<div>
-								<span>Pick an Icon!</span>
+						<div className="container">
+							<div className="row">
+								<div className="col-lg-4">
+									<span className="icon-pick">Pick an Icon!</span>
+								</div>
+								<div className="col-lg-5">
+									<p>Your current icon is: </p>
+								</div>
+								<div className="col-lg-3">
+									<img src={values.icon}></img>
+								</div>
+							</div>
+							<div className="row">
 								{imgNames.map((name, index) => (
-									<div
-										key={index}
-										onClick={(e) => highlightImage(e, name, index)}
-										style={{}}
-										className={selectedItem === name.id ? "hover" : null}>
-										<img
-											src={process.env.PUBLIC_URL + `images/${name}.png`}></img>
+									<div>
+										<div
+											key={index}
+											onClick={(e) => highlightImage(e, name, index)}
+											style={{}}
+											className={selectedItem === name.id ? "hover" : null}>
+											<img
+												src={
+													process.env.PUBLIC_URL + `images/${name}.png`
+												}></img>
+										</div>
 									</div>
 								))}
 							</div>

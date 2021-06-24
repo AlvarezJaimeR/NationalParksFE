@@ -35,7 +35,7 @@ const SpecificTraveler = (props) => {
 	return (
 		<div>
 			<NavBar tabActive="2" />
-			<div className="container">
+			<div className="top-info">
 				<img
 					className="icon-pic"
 					src={props.location.state.users[props.location.state.index].icon}
