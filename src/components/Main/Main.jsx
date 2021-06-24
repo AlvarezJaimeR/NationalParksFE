@@ -106,24 +106,60 @@ const Main = () => {
 				/>
 			</div>
 			<div className="container button-list">
-				<button onClick={(event) => buttonClick(event)} name="filter all">
-					Filter by all
+				<button
+					data-bs-toggle="dropdown"
+					aria-expanded="false"
+					id="btnGroupDrop1"
+					className="btn-list btn-outline-secondary">
+					Filter Parks
 				</button>
-				<button onClick={(event) => buttonClick(event)} name="filter wishlist">
-					Filter by wishlist
+				<ul className="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					<button
+						className="btn-secondary"
+						onClick={(event) => buttonClick(event)}
+						name="filter all">
+						Filter by all
+					</button>
+					<button
+						className="btn-secondary"
+						onClick={(event) => buttonClick(event)}
+						name="filter wishlist">
+						Filter by wishlist
+					</button>
+					<button
+						className="btn-secondary"
+						onClick={(event) => buttonClick(event)}
+						name="filter visited">
+						Filter by visited parks
+					</button>
+				</ul>
+				<button
+					data-bs-toggle="dropdown"
+					aria-expanded="false"
+					className="btn-list btn-outline-secondary"
+					id="btnGroupDrop2">
+					Sort Parks
 				</button>
-				<button onClick={(event) => buttonClick(event)} name="filter visited">
-					Filter by visited parks
-				</button>
-				<button onClick={(event) => buttonClick(event)} name="sortAZ">
-					Sort A-Z
-				</button>
-				<button onClick={(event) => buttonClick(event)} name="sortZA">
-					Sort Z-A
-				</button>
-				<button onClick={(event) => buttonClick(event)} name="state">
-					Sort By State
-				</button>
+				<ul className="dropdown-menu" aria-labeledby="btnGroupDrop2">
+					<button
+						className="btn-secondary"
+						onClick={(event) => buttonClick(event)}
+						name="sortAZ">
+						Sort A-Z
+					</button>
+					<button
+						className="btn-secondary"
+						onClick={(event) => buttonClick(event)}
+						name="sortZA">
+						Sort Z-A
+					</button>
+					<button
+						className="btn-secondary"
+						onClick={(event) => buttonClick(event)}
+						name="state">
+						Sort By State
+					</button>
+				</ul>
 			</div>
 			{filterVisitLogic === true ? (
 				<div>

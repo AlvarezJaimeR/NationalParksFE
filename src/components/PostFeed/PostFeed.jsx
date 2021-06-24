@@ -99,7 +99,6 @@ const PostFeed = (props) => {
 								</div>
 								<div className="row btn-layout">
 									<div className="col-9"> </div>
-
 									<div className="col-3 btn-group">
 										<button
 											className="btn btn-outline-secondary"
@@ -116,7 +115,11 @@ const PostFeed = (props) => {
 											Delete Post!
 										</button>
 									</div>
-									{openModal === true ? <EditPost /> : <div></div>}
+									{openModal === true ? (
+										<EditPost body={post.text} />
+									) : (
+										<div></div>
+									)}
 								</div>
 							</div>
 						</div>
