@@ -1,10 +1,9 @@
 .post-container {
-	display: flex;
 	border-color: black;
 	border-style: solid;
 	border-width: 2px;
 	margin-top: 50px;
-	background-color: rgb(216, 146, 42);
+	background-color: rgb(235, 200, 149);
 	border-radius: 5px;
 }
 
@@ -26,11 +25,11 @@
 	border-radius: 5px;
 }
 
-.align-buttons-center {
-	padding: 3%;
-}
-
 .title-centered {
 	margin: auto;
-	color: lightslategrey;
+}
+
+.btn-layout {
+	text-align: center;
+	margin-top: 20px;
 }

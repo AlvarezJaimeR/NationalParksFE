@@ -67,46 +67,51 @@ const PostFeed = (props) => {
 					<h3 className="title-centered">Your Reviews!</h3>
 				</div>
 			</div>
-			<div className="col">
+			<div className="container post-container">
 				{posts.map((post, index) => (
-					<div key={index} className="row row-cols-3 post-container">
+					<div key={index} className="row">
 						<div className="col-2">
 							<div className="post-user-pic">
 								<img src={loggedInUser.icon} alt="user icon" />
 							</div>
 						</div>
-						<div className="col-8 main-post-body">
-							<div className="row row-cols-1">
-								<div className="col">
-									<h5>Rating: {post.rating}/5</h5>
-								</div>
-								<div className="col">
-									<h3 className="post-body">{post.parkName}</h3>
-								</div>
-								<div className="col">
-									<p className="post-body">{post.text}</p>
-								</div>
-							</div>
-						</div>
-						<div className="col-2">
+						<div className="col-10 main-post-body">
 							<div className="row">
-								<button
-									className="btn btn-primary"
-									data-bs-toggle="modal"
-									data-bs-target="#staticBackdrop"
-									onClick={(event) => buttonClick(event, index)}
-									name="edit">
-									Edit Post!
-								</button>
-								{openModal === true ? <EditPost /> : <div></div>}
-							</div>
-							<div className="row">
-								<button
-									name="delete"
-									onClick={(event) => buttonClick(event, index)}
-									className="btn btn-danger">
-									Delete Post!
-								</button>
+								<div className="col-10">
+									<div className="row">
+										<h5>Rating: {post.rating}/5</h5>
+									</div>
+									<div className="row">
+										<h3 className="post-body">{post.parkName}</h3>
+									</div>
+									<div className="row">
+										<p className="post-body">{post.text}</p>
+									</div>
+									<div className="row">
+										<p>{post.date.toString()}</p>
+									</div>
+								</div>
+								<div className="col-2 btn-layout">
+									<div>
+										<button
+											className="btn btn-primary"
+											data-bs-toggle="modal"
+											data-bs-target="#staticBackdrop"
+											onClick={(event) => buttonClick(event, index)}
+											name="edit">
+											Edit Post!
+										</button>
+										{openModal === true ? <EditPost /> : <div></div>}
+									</div>
+									<div>
+										<button
+											name="delete"
+											onClick={(event) => buttonClick(event, index)}
+											className="btn btn-danger">
+											Delete Post!
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

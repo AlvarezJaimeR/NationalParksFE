@@ -289,13 +289,13 @@ const SpecificPark = (props) => {
 						<p>{weather.current.weather_descriptions}</p>
 					</div> */}
 				</div>
-				<div>
+				<div className="container">
 					{visitlist === true ? (
-						<div>
+						<div className="row">
 							<div>
 								<AddPost parkName={props.location.state.name} />
 							</div>
-							<div>
+							<div className="post-feed">
 								<PostFeed parkName={props.location.state.name} />
 							</div>
 						</div>

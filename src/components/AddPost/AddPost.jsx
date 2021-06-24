@@ -38,8 +38,8 @@ const AddPost = (props) => {
 
 	return (
 		<div className="row text-center">
-			<div className="col">
-				<h6 className="subtitle">Would you like to post a review?</h6>
+			<div className="col ">
+				<h4 className="title-post">Would you like to post a review?</h4>
 			</div>
 			<div className="post-form">
 				<form onSubmit={handleSubmit}>
@@ -62,8 +62,8 @@ const AddPost = (props) => {
 						<textarea
 							name="text"
 							type="text"
-							cols="60"
-							rows="5"
+							cols="50"
+							rows="3"
 							className="form-control"
 							placeholder="Type your review here..."
 							aria-label="Post time"

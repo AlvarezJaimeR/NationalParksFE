@@ -148,7 +148,7 @@ const RegisterPage = () => {
 							</div>
 							<div className="row">
 								{imgNames.map((name, index) => (
-									<div>
+									<div className="col-2">
 										<div
 											key={index}
 											onClick={(e) => highlightImage(e, name, index)}
