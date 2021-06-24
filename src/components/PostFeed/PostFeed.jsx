@@ -108,6 +108,15 @@ const PostFeed = (props) => {
 											name="edit">
 											Edit Post!
 										</button>
+										{openModal === true ? (
+											<EditPost
+												open={openModal}
+												body={post.text}
+												index={index}
+											/>
+										) : (
+											<div></div>
+										)}
 										<button
 											name="delete"
 											onClick={(event) => buttonClick(event, index)}
@@ -115,11 +124,6 @@ const PostFeed = (props) => {
 											Delete Post!
 										</button>
 									</div>
-									{openModal === true ? (
-										<EditPost body={post.text} />
-									) : (
-										<div></div>
-									)}
 								</div>
 							</div>
 						</div>

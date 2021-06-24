@@ -5,6 +5,7 @@ import AddPost from "../AddPost/AddPost";
 import PostFeed from "../PostFeed/PostFeed";
 import "./SpecificPark.css";
 import axios from "axios";
+import ReactLoading from "react-loading";
 
 const SpecificPark = (props) => {
 	//console.log(props.location.state);
@@ -307,7 +308,7 @@ const SpecificPark = (props) => {
 		</div>
 	) : (
 		<div>
-			<h1>Loading...</h1>
+			<ReactLoading type={"balls"} color={"black"} height={667} width={375} />
 		</div>
 	);
 };

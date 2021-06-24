@@ -1,7 +1,9 @@
 import React from "react";
 import "./EditPost.css";
 
-function EditPost(props) {
+function EditPost(open, props) {
+	console.log(props);
+	if (!open) return null;
 	return (
 		<div
 			className="modal fade"
@@ -21,7 +23,9 @@ function EditPost(props) {
 							data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<div className="modal-body">{props.body}</div>
+					<div className="modal-body">
+						{props.body} {props.index}
+					</div>
 					<div className="modal-footer">
 						<button className="btn btn-secondary" data-bs-dismiss="modal">
 							Close

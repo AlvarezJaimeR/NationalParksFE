@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../libs/contextLib";
+import ReactLoading from "react-loading";
 
 const Home = () => {
 	const [parks, setParks] = useState([]);
@@ -349,7 +350,14 @@ const Home = () => {
 					)}
 				</div>
 			) : (
-				<p>Welcome to the national park home page!</p>
+				<div className="main">
+					<ReactLoading
+						type={"balls"}
+						color={"black"}
+						height={667}
+						width={375}
+					/>
+				</div>
 			)}
 		</div>
 	);

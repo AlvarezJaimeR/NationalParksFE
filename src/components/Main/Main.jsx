@@ -4,6 +4,7 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import "./Main.css";
 import { Link } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 const Main = () => {
 	const { loggedInUser, parks, totalUsers } = useAppContext();
@@ -338,7 +339,12 @@ const Main = () => {
 		</div>
 	) : (
 		<div className="main">
-			<h1>National Parks Loading...</h1>
+			<ReactLoading
+				type={"spinningBubbles"}
+				color={"blue"}
+				height={300}
+				width={375}
+			/>
 		</div>
 	);
 };

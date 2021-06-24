@@ -2,6 +2,13 @@
 	margin-top: 200px;
 }
 
+.main {
+	margin-top: 15%;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
 .carousel-inner {
 	display: flex;
 }
