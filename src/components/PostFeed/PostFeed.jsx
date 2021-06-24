@@ -3,6 +3,7 @@ import "./PostFeed.css";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import EditPost from "../EditPost/EditPost";
+import dateFormat from "dateformat";
 
 const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
@@ -71,46 +72,51 @@ const PostFeed = (props) => {
 				{posts.map((post, index) => (
 					<div key={index} className="row">
 						<div className="col-2">
-							<div className="post-user-pic">
+							<div className="post-user-icon">
 								<img src={loggedInUser.icon} alt="user icon" />
 							</div>
 						</div>
 						<div className="col-10 main-post-body">
 							<div className="row">
-								<div className="col-10">
+								<div className="col">
 									<div className="row">
-										<h5>Rating: {post.rating}/5</h5>
+										<div className="col-3"></div>
+										<div className="col-5">
+											<h3 className="post-body">{post.parkName}</h3>
+										</div>
+										<div className="col-2"></div>
+										<div className="col-2">
+											<h5>Visit Rating: {post.rating}/5</h5>
+										</div>
 									</div>
 									<div className="row">
-										<h3 className="post-body">{post.parkName}</h3>
-									</div>
-									<div className="row">
-										<p className="post-body">{post.text}</p>
-									</div>
-									<div className="row">
-										<p>{post.date.toString()}</p>
+										<h6>
+											Posted on:{" "}
+											{dateFormat(post.date, "mmmm dS, yyyy --- h:MM:ss TT")}
+										</h6>
+										<h5 className="post-body">Review: {post.text}</h5>
 									</div>
 								</div>
-								<div className="col-2 btn-layout">
-									<div>
+								<div className="row btn-layout">
+									<div className="col-9"> </div>
+
+									<div className="col-3 btn-group">
 										<button
-											className="btn btn-primary"
+											className="btn btn-outline-secondary"
 											data-bs-toggle="modal"
 											data-bs-target="#staticBackdrop"
 											onClick={(event) => buttonClick(event, index)}
 											name="edit">
 											Edit Post!
 										</button>
-										{openModal === true ? <EditPost /> : <div></div>}
-									</div>
-									<div>
 										<button
 											name="delete"
 											onClick={(event) => buttonClick(event, index)}
-											className="btn btn-danger">
+											className="btn btn-outline-danger">
 											Delete Post!
 										</button>
 									</div>
+									{openModal === true ? <EditPost /> : <div></div>}
 								</div>
 							</div>
 						</div>
