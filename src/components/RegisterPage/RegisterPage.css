@@ -14,10 +14,31 @@ img {
 	width: 500px;
 	border-style: groove;
 	border-radius: 10px;
-	border-color: lightblue;
+	border-color: black;
+}
+
+.text-center-title {
+	padding-top: 3%;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.text-center-text {
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 5%;
 }
 
 .icon-pick {
 	text-align: center;
 	vertical-align: middle;
+}
+
+.btn-center {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.icon-list {
+	margin-top: 10px !important;
 }

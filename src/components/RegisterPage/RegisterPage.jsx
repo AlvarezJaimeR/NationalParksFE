@@ -136,19 +136,20 @@ const RegisterPage = () => {
 						</div>
 						<div className="container">
 							<div className="row">
-								<div className="col-lg-4">
-									<span className="icon-pick">Pick an Icon!</span>
+								<div className="col-sm-4 text-center-title">
+									<span className="icon-pick">Pick an icon below!</span>
 								</div>
-								<div className="col-lg-5">
+								<div className="col-sm-5 text-center-text">
 									<p>Your current icon is: </p>
 								</div>
-								<div className="col-lg-3">
+								<div className="col-sm-3">
 									<img src={values.icon}></img>
 								</div>
 							</div>
-							<div className="row">
+							<div className="row ">
+								<div className="col-1"></div>
 								{imgNames.map((name, index) => (
-									<div className="col-2">
+									<div className="col-2 icon-list">
 										<div
 											key={index}
 											onClick={(e) => highlightImage(e, name, index)}
@@ -161,11 +162,20 @@ const RegisterPage = () => {
 										</div>
 									</div>
 								))}
+								<div className="col-1"></div>
 							</div>
 						</div>
-						<button type="submit" className="btn btn-primary">
-							Submit
-						</button>
+						<div className="row">
+							<div className="col-sm-5"></div>
+							<div className="col-sm-4">
+								<button
+									type="submit"
+									className="btn btn-outline-primary btn-center">
+									Submit
+								</button>
+							</div>
+							<div className="col-sm-3"></div>
+						</div>
 					</form>
 				</div>
 			</div>
