@@ -25,3 +25,25 @@
 	display: grid;
 	grid-template-columns: 30% 70%;
 }
+
+.visit-container {
+	display: flex;
+	text-align: center;
+	border-radius: 25px;
+	border: 5px solid #edeeeb;
+	flex-direction: column;
+	padding: 20px;
+	margin: 5px;
+	vertical-align: middle;
+}
+
+.wish-container {
+	display: flex;
+	text-align: center;
+	border-radius: 25px;
+	border: 5px solid #edeeeb;
+	flex-direction: column;
+	padding: 20px;
+	margin: 5px;
+	vertical-align: middle;
+}

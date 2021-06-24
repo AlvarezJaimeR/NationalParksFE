@@ -46,16 +46,16 @@ const SpecificTraveler = (props) => {
 						props.location.state.users[props.location.state.index].lastName}
 				</h1>
 			</div>
-			{props.location.state.users[props.location.state.index].wishListParks
-				.length > 0 ? (
-				<div className="wrapper">
-					<div>Wishlist Parks:</div>
-					<div>
-						{props.location.state.users[
-							props.location.state.index
-						].wishListParks.map((wish, index) => (
-							<div key={index}>
-								<div>
+			<div className="container wish-container">
+				<h3>Wishlist Parks:</h3>
+				<div className="row">
+					{props.location.state.users[props.location.state.index].wishListParks
+						.length > 0 ? (
+						<div className="wrapper">
+							{props.location.state.users[
+								props.location.state.index
+							].wishListParks.map((wish, index) => (
+								<div key={index}>
 									<div>
 										<Link
 											to={{
@@ -70,50 +70,54 @@ const SpecificTraveler = (props) => {
 										</Link>
 									</div>
 								</div>
-							</div>
-						))}
-					</div>
+							))}
+						</div>
+					) : (
+						<div>
+							<p>Wishlist Parks:</p>
+							<p>This traveler doesn't have any parks on their wishlist.</p>
+						</div>
+					)}
 				</div>
-			) : (
-				<div>
-					<p>Wishlist Parks:</p>
-					<p>This traveler doesn't have any parks on their wishlist.</p>
-				</div>
-			)}
-			{props.location.state.users[props.location.state.index].visitedParks
-				.length > 0 ? (
-				<div className="wrapper">
-					<div>Visited Parks:</div>
-					<div>
-						{props.location.state.users[
-							props.location.state.index
-						].visitedParks.map((visited, index) => (
-							<div key={index}>
-								<div>
-									<div>
-										<Link
-											to={{
-												pathname: "/specificPark",
-												state: {
-													parks: parks,
-													name: visited.text,
-												},
-											}}>
-											<p>{visited.text}</p>
-											{console.log(visited.text)}
-										</Link>
+			</div>
+			<div className="container visit-container">
+				<h3>Visited Parks:</h3>
+				<div className="row">
+					{props.location.state.users[props.location.state.index].visitedParks
+						.length > 0 ? (
+						<div className="wrapper">
+							<div>
+								{props.location.state.users[
+									props.location.state.index
+								].visitedParks.map((visited, index) => (
+									<div key={index}>
+										<div>
+											<div>
+												<Link
+													to={{
+														pathname: "/specificPark",
+														state: {
+															parks: parks,
+															name: visited.text,
+														},
+													}}>
+													<p>{visited.text}</p>
+													{console.log(visited.text)}
+												</Link>
+											</div>
+										</div>
 									</div>
-								</div>
+								))}
 							</div>
-						))}
-					</div>
+						</div>
+					) : (
+						<div>
+							<p>Visited Parks:</p>
+							<p>This traveler has not been able to visit a park.</p>
+						</div>
+					)}
 				</div>
-			) : (
-				<div>
-					<p>Visited Parks:</p>
-					<p>This traveler has not been able to visit a park.</p>
-				</div>
-			)}
+			</div>
 		</div>
 	);
 };
