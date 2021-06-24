@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./Traveler.css";
 import { useAppContext } from "../../libs/contextLib";
 import { Link } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 const Travelers = () => {
 	const { totalUsers, setTotalUsers, loggedInUser } = useAppContext();
@@ -48,7 +49,9 @@ const Travelers = () => {
 			</div>
 		</div>
 	) : (
-		<h1>loading...</h1>
+		<div className="main">
+			<ReactLoading type={"bars"} color={"black"} height={667} width={375} />
+		</div>
 	);
 };
 

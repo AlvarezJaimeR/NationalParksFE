@@ -339,12 +339,7 @@ const Main = () => {
 		</div>
 	) : (
 		<div className="main">
-			<ReactLoading
-				type={"spinningBubbles"}
-				color={"blue"}
-				height={300}
-				width={375}
-			/>
+			<ReactLoading type={"cubes"} color={"black"} height={300} width={375} />
 		</div>
 	);
 };

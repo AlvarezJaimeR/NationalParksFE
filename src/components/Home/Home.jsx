@@ -352,7 +352,7 @@ const Home = () => {
 			) : (
 				<div className="main">
 					<ReactLoading
-						type={"balls"}
+						type={"bars"}
 						color={"black"}
 						height={667}
 						width={375}

@@ -307,8 +307,8 @@ const SpecificPark = (props) => {
 			</div>
 		</div>
 	) : (
-		<div>
-			<ReactLoading type={"balls"} color={"black"} height={667} width={375} />
+		<div className="main">
+			<ReactLoading type={"bars"} color={"black"} height={667} width={375} />
 		</div>
 	);
 };

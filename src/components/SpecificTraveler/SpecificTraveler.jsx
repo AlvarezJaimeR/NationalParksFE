@@ -65,8 +65,7 @@ const SpecificTraveler = (props) => {
 													name: wish.text,
 												},
 											}}>
-											<p>{wish.text}</p>
-											{console.log(wish.text)}
+											<p className="park-text">{wish.text}</p>
 										</Link>
 									</div>
 								</div>
@@ -74,7 +73,6 @@ const SpecificTraveler = (props) => {
 						</div>
 					) : (
 						<div>
-							<p>Wishlist Parks:</p>
 							<p>This traveler doesn't have any parks on their wishlist.</p>
 						</div>
 					)}
@@ -86,33 +84,27 @@ const SpecificTraveler = (props) => {
 					{props.location.state.users[props.location.state.index].visitedParks
 						.length > 0 ? (
 						<div className="wrapper">
-							<div>
-								{props.location.state.users[
-									props.location.state.index
-								].visitedParks.map((visited, index) => (
-									<div key={index}>
-										<div>
-											<div>
-												<Link
-													to={{
-														pathname: "/specificPark",
-														state: {
-															parks: parks,
-															name: visited.text,
-														},
-													}}>
-													<p>{visited.text}</p>
-													{console.log(visited.text)}
-												</Link>
-											</div>
-										</div>
+							{props.location.state.users[
+								props.location.state.index
+							].visitedParks.map((visited, index) => (
+								<div key={index}>
+									<div>
+										<Link
+											to={{
+												pathname: "/specificPark",
+												state: {
+													parks: parks,
+													name: visited.text,
+												},
+											}}>
+											<p className="park-text">{visited.text}</p>
+										</Link>
 									</div>
-								))}
-							</div>
+								</div>
+							))}
 						</div>
 					) : (
 						<div>
-							<p>Visited Parks:</p>
 							<p>This traveler has not been able to visit a park.</p>
 						</div>
 					)}

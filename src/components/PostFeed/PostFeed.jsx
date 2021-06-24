@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./PostFeed.css";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
-import EditPost from "../EditPost/EditPost";
 import dateFormat from "dateformat";
+import { Link } from "react-router-dom";
 
 const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
 	const [update, setUpdate] = useState(false);
-	const [openModal, setOpenModal] = useState(true);
 	//console.log("post feed props", props);
 
 	const buttonClick = (event, post) => {
@@ -20,7 +19,6 @@ const PostFeed = (props) => {
 		switch (event.target.name) {
 			case "edit":
 				console.log("edit");
-				setOpenModal(true);
 				setUpdate(!update);
 				break;
 			case "delete":
@@ -100,23 +98,15 @@ const PostFeed = (props) => {
 								<div className="row btn-layout">
 									<div className="col-9"> </div>
 									<div className="col-3 btn-group">
-										<button
-											className="btn btn-outline-secondary"
-											data-bs-toggle="modal"
-											data-bs-target="#staticBackdrop"
-											onClick={(event) => buttonClick(event, index)}
-											name="edit">
-											Edit Post!
-										</button>
-										{openModal === true ? (
-											<EditPost
-												open={openModal}
-												body={post.text}
-												index={index}
-											/>
-										) : (
-											<div></div>
-										)}
+										<Link
+											to={{
+												pathname: "/editPost",
+												state: { post: post, index: index },
+											}}>
+											<button className="btn btn-outline-secondary">
+												Edit Post!
+											</button>
+										</Link>
 										<button
 											name="delete"
 											onClick={(event) => buttonClick(event, index)}
