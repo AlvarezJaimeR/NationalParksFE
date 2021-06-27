@@ -1,4 +1,3 @@
-import react, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAppContext } from "../../libs/contextLib";
 
@@ -74,7 +73,8 @@ const NavBar = (props) => {
 				<div className="container-fluid">
 					<a className="navbar-brand" href="/">
 						<img
-							src="https://images.unsplash.com/photo-1564604352708-b786936ea993?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+							src={process.env.PUBLIC_URL + `images/Mountain2.png`}
+							//src="https://images.unsplash.com/photo-1564604352708-b786936ea993?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
 							alt="logo"
 							width="50"
 							height="200"
