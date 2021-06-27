@@ -1,0 +1,22 @@
+.top-title {
+	margin-top: 10% !important;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.edit-box {
+	padding: 5px;
+	border-style: groove;
+	border-radius: 10px;
+	border-color: black;
+	text-align: center;
+}
+
+.park-link {
+	margin-top: 1% !important;
+}
+
+.edit-update-btn {
+	margin-top: 1% !important;
+}

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useAppContext } from "../../libs/contextLib";
 import UseForm from "../UseForm/UseForm";
 import { Link } from "react-router-dom";
+import "./EditPost.css";
 
 function EditPost(props) {
 	console.log(props.location.state);
@@ -36,49 +37,65 @@ function EditPost(props) {
 	return (
 		<div>
 			<NavBar tabActive="1" />
-			<div className="container main">
-				<div className="row">
-					<h1>Edit Post!</h1>
-				</div>
-				<form className="row" onSubmit={handleSubmit}>
-					<div className="input-group mb-3">
-						<label className="input-group-text">Rating!</label>
-						<select
-							onChange={handleChange}
-							className="form-select"
-							id="rating"
-							name="rating">
-							<option>What would you rate this park?</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
+			<div className="container">
+				<div className="row top-title">
+					<div className="col-12">
+						<h1>Edit Post!</h1>
 					</div>
-					<label htmlFor="postText">Post Text:</label>
-					<input
-						placeholder={props.location.state.post.text}
-						className="form-control"
-						type="text"
-						name="text"
-						id="postText"
-						value={values.text || ""}
-						onChange={handleChange}
-					/>
-					<button type="submit" className="btn btn-success">
-						Update post!
-					</button>
-				</form>
-				<Link
-					to={{
-						pathname: "/specificPark",
-						state: { parks: parks, name: props.location.state.post.parkName },
-					}}>
-					<button className="btn btn-outline-primary">
-						Return to the park page.
-					</button>
-				</Link>
+				</div>
+				<div className="row">
+					<div className="col-2"></div>
+					<div className="col-8 edit-box">
+						<form onSubmit={handleSubmit}>
+							<div className="input-group mb-3">
+								<label className="input-group-text">Rating!</label>
+								<select
+									onChange={handleChange}
+									className="form-select"
+									id="rating"
+									name="rating">
+									<option>What would you rate this park?</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+							<label htmlFor="postText">Post Text:</label>
+							<input
+								placeholder={props.location.state.post.text}
+								className="form-control"
+								type="text"
+								name="text"
+								id="postText"
+								value={values.text || ""}
+								onChange={handleChange}
+							/>
+							<button type="submit" className="btn btn-success edit-update-btn">
+								Update post!
+							</button>
+						</form>
+					</div>
+					<div className="col-2"></div>
+				</div>
+				<div className="row park-link">
+					<div className="col-8"></div>
+					<div className="col-4">
+						<Link
+							to={{
+								pathname: "/specificPark",
+								state: {
+									parks: parks,
+									name: props.location.state.post.parkName,
+								},
+							}}>
+							<button className="btn btn-outline-primary">
+								Return to the park page.
+							</button>
+						</Link>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
