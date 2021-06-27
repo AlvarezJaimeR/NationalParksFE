@@ -95,7 +95,7 @@ const Main = () => {
 	return parks.length > 0 ? (
 		<div>
 			<NavBar tabActive="1" />
-			<h1 className="main">National Parks!</h1>
+			<h1 className="main">National Parks</h1>
 			<div className="search-bar">
 				<input
 					className="input-field"

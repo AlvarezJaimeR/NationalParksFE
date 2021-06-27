@@ -24,7 +24,7 @@ const Travelers = () => {
 	return otherUsers.length > 0 ? (
 		<div>
 			<NavBar tabActive="2" />
-			<h1 className="main">Travelers!</h1>
+			<h1 className="main">Travelers</h1>
 			<div className="container">
 				<div className="row">
 					{otherUsers.map((user, index) => (

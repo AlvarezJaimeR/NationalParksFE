@@ -17,7 +17,7 @@ const RegisterPage = () => {
 		userHasAuthenticated,
 		setLoggedInUser,
 	} = useAppContext();
-	const imgNames = ["B", "C", "G", "L", "S"];
+	const imgNames = ["Bison", "Antelope", "Eagle", "Cougar", "Bear"];
 
 	useEffect(() => {
 		const random = Math.floor(Math.random() * imgNames.length);
