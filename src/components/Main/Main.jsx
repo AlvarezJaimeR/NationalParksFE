@@ -233,8 +233,16 @@ const Main = () => {
 														name: park.fullName,
 													},
 												}}>
-												<p>{park.name + ", " + park.states}</p>
+												<p className="park-state-wish">
+													{park.name + ", " + park.states}
+												</p>
 											</Link>
+											<div>
+												<img
+													src={
+														process.env.PUBLIC_URL + `images/Star.png`
+													}></img>
+											</div>
 										</div>
 									))}
 							</div>
@@ -277,6 +285,12 @@ const Main = () => {
 																{park.name + ", " + park.states}
 															</p>
 														</Link>
+														<div>
+															<img
+																src={
+																	process.env.PUBLIC_URL + `images/Star.png`
+																}></img>
+														</div>
 													</div>
 												);
 										}
