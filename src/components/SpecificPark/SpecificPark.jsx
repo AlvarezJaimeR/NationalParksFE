@@ -40,8 +40,8 @@ const SpecificPark = (props) => {
 		setCurrentPark(tempPark);
 		console.log(tempPark[0].latitude);
 		console.log(tempPark[0].longitude);
-		setFinished(true);
-		/* 		axios
+		//setFinished(true);
+		axios
 			.get(
 				`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
 			)
@@ -52,7 +52,7 @@ const SpecificPark = (props) => {
 			.catch((error) => {
 				console.log(error);
 				alert(error.response.data);
-			}); */
+			});
 	}
 
 	async function getUser() {
@@ -278,17 +278,27 @@ const SpecificPark = (props) => {
 							</p>
 						</div>
 					</div>
-
-					{/* 					<div>
-						<h5>Current weather:</h5>
-						<p>{weather.location.localtime}</p>
-						<p>{weather.current.temperature}</p>
-						<img
-							src={weather.current.weather_icons}
-							alt={weather.current.weather_descriptions}
-						/>
-						<p>{weather.current.weather_descriptions}</p>
-					</div> */}
+					<div className="row">
+						<h5 className="col-2">Current weather:</h5>
+						<div className="col-2">
+							<p>Current local time: {weather.location.localtime}</p>
+						</div>
+						<div className="col-3">
+							<p>
+								Current weather temperature: {weather.current.temperature}°F
+							</p>
+						</div>
+						<p className="col-2">
+							Weather description: {weather.current.weather_descriptions}
+						</p>
+						<div className="col-1">
+							<img
+								src={weather.current.weather_icons}
+								alt={weather.current.weather_descriptions}
+							/>
+						</div>
+						<div className="col-2"></div>
+					</div>
 				</div>
 				<div className="container">
 					{visitlist === true ? (
