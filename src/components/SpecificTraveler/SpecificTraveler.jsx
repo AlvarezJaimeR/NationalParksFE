@@ -91,8 +91,12 @@ const SpecificTraveler = (props) => {
 					)}
 				</div>
 			</div>
-			<div className="container">
-				<h3>Posts:</h3>
+			<div className="container posts-container">
+				<div className="row row-cols-1">
+					<div className="col text-center">
+						<h3 className="title-centered">Posts:</h3>
+					</div>
+				</div>
 				<div className="row">
 					{props.location.state.users[props.location.state.index].posts.length >
 					0 ? (
@@ -100,6 +104,8 @@ const SpecificTraveler = (props) => {
 							{props.location.state.users[props.location.state.index].posts.map(
 								(post, index) => (
 									<div key={index}>
+										<h7 className="park-title">{post.parkName}</h7>
+										<p>Rating: {post.rating}/5</p>
 										<p className="park-text">{post.text}</p>
 									</div>
 								)
