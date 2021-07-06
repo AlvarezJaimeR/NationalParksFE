@@ -352,16 +352,14 @@ const Main = () => {
 			)}
 			{specificUser.posts.length > 0 ? (
 				<div className="container">
-					{console.log(specificUser.posts)}
 					<div className="row">Posts!</div>
-					<div className="row">
-						{specificUser.posts.map((post, index) => (
-							<div key={index} className="col">
-								{console.log(post.text)}
-								<p>{post.text}</p>
-							</div>
-						))}
-					</div>
+					{specificUser.posts.map((post, index) => (
+						<div key={index} className="row">
+							<h4>{post.parkName}</h4>
+							<p>{post.rating}/5</p>
+							<p>{post.text}</p>
+						</div>
+					))}
 				</div>
 			) : (
 				<div>
