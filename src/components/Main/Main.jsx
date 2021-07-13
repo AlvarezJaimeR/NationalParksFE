@@ -353,22 +353,31 @@ const Main = () => {
 			)}
 			{specificUser.posts.length > 0 ? (
 				<div className="container">
-					<div className="row">Your posts!</div>
-					{specificUser.posts.map((post, index) => (
-						<div key={index} className="row">
-							<h4>{post.parkName}</h4>
-							<p>{post.rating}/5</p>
-							<h6>
-								Posted on:{" "}
-								{dateFormat(post.date, "mmmm dS, yyyy --- h:MM:ss TT")}
-							</h6>
-							<p>{post.text}</p>
-						</div>
-					))}
+					<div className="row">
+						<div className="col-5"></div>
+						<h3 className="col-2">Your posts!</h3>
+						<div className="col-5"></div>
+					</div>
+					<div className="row">
+						{specificUser.posts.map((post, index) => (
+							<div key={index} className="col-6 user-post">
+								<h4>{post.parkName}</h4>
+								<p>Ratings: {post.rating}/5</p>
+								<h6>
+									Posted on:{" "}
+									{dateFormat(post.date, "mmmm dS, yyyy --- h:MM:ss TT")}
+								</h6>
+								<p>{post.text}</p>
+							</div>
+						))}
+					</div>
 				</div>
 			) : (
 				<div>
-					<h3>Currently no posts on any of the visited parks.</h3>
+					<h3>
+						Currently no posts on any of the visited parks or there are
+						currently no visited parks.
+					</h3>
 				</div>
 			)}
 		</div>

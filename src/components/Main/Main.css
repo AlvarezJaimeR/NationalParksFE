@@ -89,3 +89,11 @@
 	justify-content: center;
 	padding: 5px;
 }
+
+.user-post {
+	padding: 5px;
+	width: 500px;
+	border-style: groove;
+	border-radius: 10px;
+	border-color: black;
+}
