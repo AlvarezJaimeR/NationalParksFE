@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Main.css";
 import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
+import dateFormat from "dateformat";
 
 const Main = () => {
 	const { loggedInUser, parks, totalUsers } = useAppContext();
@@ -352,11 +353,15 @@ const Main = () => {
 			)}
 			{specificUser.posts.length > 0 ? (
 				<div className="container">
-					<div className="row">Posts!</div>
+					<div className="row">Your posts!</div>
 					{specificUser.posts.map((post, index) => (
 						<div key={index} className="row">
 							<h4>{post.parkName}</h4>
 							<p>{post.rating}/5</p>
+							<h6>
+								Posted on:{" "}
+								{dateFormat(post.date, "mmmm dS, yyyy --- h:MM:ss TT")}
+							</h6>
 							<p>{post.text}</p>
 						</div>
 					))}
