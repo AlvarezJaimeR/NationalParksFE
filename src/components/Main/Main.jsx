@@ -355,7 +355,7 @@ const Main = () => {
 				<div className="container">
 					<div className="row">
 						<div className="col-5"></div>
-						<h3 className="col-2">Your posts!</h3>
+						<h3 className="col-2 post-header">Your posts!</h3>
 						<div className="col-5"></div>
 					</div>
 					<div className="row">

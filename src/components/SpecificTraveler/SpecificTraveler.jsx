@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useAppContext } from "../../libs/contextLib";
 import "./SpecificTraveler.css";
 import { Link } from "react-router-dom";
+import dateFormat from "dateformat";
 
 const SpecificTraveler = (props) => {
 	console.log(props.location.state);
@@ -105,7 +106,10 @@ const SpecificTraveler = (props) => {
 								(post, index) => (
 									<div key={index}>
 										<h7 className="park-title">{post.parkName}</h7>
-										<p>Rating: {post.rating}/5</p>
+										<p>
+											Rating: {post.rating}/5 || Posted on:{" "}
+											{dateFormat(post.date, "mmmm dS, yyyy - h:MM:ss TT")}
+										</p>
 										<p className="park-text">{post.text}</p>
 									</div>
 								)
