@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { useAppContext } from "../../libs/contextLib";
+import "./NavBar.css";
 
 const NavBar = (props) => {
 	const history = useHistory();

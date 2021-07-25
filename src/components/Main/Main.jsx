@@ -61,6 +61,35 @@ const Main = () => {
 		getUser();
 	}, [parks]);
 
+	/* 	async function getUser2() {
+		const response = await axios
+			.get(`http://localhost:5000/api/users/${loggedInUser._id}`)
+
+		console.log("specific user", response.data);
+		setSpecificUser(response.data);
+		console.log(response.data.wishListParks);
+		console.log(response.data.visitedParks);
+
+		const filterWish = parks.filter((park) => {
+			for (let i = 0; i < specificUser.wishListParks.length; i++) {
+				if (park.fullName === specificUser.wishListParks[i].text) {
+					return park;
+				}
+			}
+		});
+		console.log(filterWish);
+		setFilteredWish(filterWish);
+		const filterVisit = parks.filter((park) => {
+			for (let i = 0; i < specificUser.visitedParks.length; i++) {
+				if (park.fullName === specificUser.visitedParks[i].text) {
+					return park;
+				}
+			}
+		});
+		console.log(filterVisit);
+		setFilteredVisit(filterVisit);
+	} */
+
 	async function getUser() {
 		console.log(loggedInUser);
 		await axios
