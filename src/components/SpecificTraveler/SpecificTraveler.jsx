@@ -1,18 +1,12 @@
 import NavBar from "../NavBar/NavBar";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAppContext } from "../../libs/contextLib";
 import "./SpecificTraveler.css";
 import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 
 const SpecificTraveler = (props) => {
-	console.log(props.location.state);
-	const { loggedInUser, totalUsers, parks } = useAppContext();
-	console.log(props.location.state.users[props.location.state.index]);
-
-	useEffect(() => {
-		console.log("passing");
-	}, []);
+	const { parks } = useAppContext();
 
 	return (
 		<div>

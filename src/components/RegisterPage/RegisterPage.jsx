@@ -11,12 +11,7 @@ const RegisterPage = () => {
 		UseForm(register);
 	const [selectedItem, setSelectedItem] = useState(0);
 	const history = useHistory();
-	const {
-		loggedInUser,
-		isAuthenticated,
-		userHasAuthenticated,
-		setLoggedInUser,
-	} = useAppContext();
+	const { userHasAuthenticated, setLoggedInUser } = useAppContext();
 	const imgNames = ["Bison", "Antelope", "Eagle", "Cougar", "Bear"];
 
 	useEffect(() => {

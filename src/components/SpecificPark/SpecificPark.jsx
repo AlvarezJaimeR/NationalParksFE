@@ -8,10 +8,7 @@ import axios from "axios";
 import ReactLoading from "react-loading";
 
 const SpecificPark = (props) => {
-	//console.log(props.location.state);
-	//console.log(props.location.state.index);
-	const { loggedInUser, headers, setLoggedInUser } = useAppContext();
-	//console.log(props.location.state.parks[props.location.state.index]);
+	const { loggedInUser, headers } = useAppContext();
 	const [update, setUpdate] = useState(true);
 	const [wishlist, setWishlist] = useState(false);
 	const [visitlist, setVisitlist] = useState(false);
@@ -40,7 +37,6 @@ const SpecificPark = (props) => {
 		setCurrentPark(tempPark);
 		console.log(tempPark[0].latitude);
 		console.log(tempPark[0].longitude);
-		//setFinished(true);
 		axios
 			.get(
 				`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
