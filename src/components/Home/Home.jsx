@@ -11,7 +11,7 @@ const Home = () => {
 	const { isAuthenticated } = useAppContext();
 
 	useEffect(() => {
-		console.log("passing");
+		//console.log("passing");
 		getParks();
 	}, []);
 
@@ -21,7 +21,7 @@ const Home = () => {
 				`https://developer.nps.gov/api/v1/parks?limit=500&api_key=${process.env.REACT_APP_NPS_API_KEY}`
 			)
 			.then((response) => {
-				console.log(response.data.data);
+				//console.log(response.data.data);
 				const tempParks = response.data.data.filter(
 					(parks) =>
 						parks.parkCode === "glac" ||
@@ -31,11 +31,11 @@ const Home = () => {
 						parks.parkCode === "brca"
 				);
 				setParks(tempParks);
-				console.log(tempParks);
+				//console.log(tempParks);
 			})
 			.catch((error) => {
-				console.log(error);
-				alert(error.response.data);
+				//console.log(error);
+				//alert(error.response.data);
 			});
 	}
 	return (

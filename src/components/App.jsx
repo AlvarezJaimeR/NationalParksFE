@@ -45,7 +45,7 @@ function App() {
 
 	async function onLoad() {
 		await axios.get(`${ROOT_URL}api/users`).then((response) => {
-			console.log("all users", response.data);
+			//console.log("all users", response.data);
 			setTotalUsers(response.data);
 		});
 		if (jwt !== null) {
@@ -67,7 +67,7 @@ function App() {
 				`https://developer.nps.gov/api/v1/parks?limit=500&api_key=${process.env.REACT_APP_NPS_API_KEY}`
 			)
 			.then((response) => {
-				console.log(response.data.data);
+				//console.log(response.data.data);
 				const tempParks = response.data.data.filter(
 					(parks) =>
 						parks.designation === "National Park" ||
@@ -78,7 +78,7 @@ function App() {
 						parks.parkCode === "redw"
 				);
 				setParks(tempParks);
-				console.log(tempParks);
+				//console.log(tempParks);
 			})
 			.catch((error) => {
 				console.log(error);
