@@ -68,6 +68,7 @@ const SpecificPark = (props) => {
 				const removedVisit = response.data.visitedParks.filter(
 					(parkV) => parkV.text === props.location.state.name
 				);
+				setFinished(true);
 				//console.log(removedVisit);
 				if (removedWish.length > 0) {
 					setWishlist(true);
