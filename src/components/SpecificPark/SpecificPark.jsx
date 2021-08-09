@@ -54,6 +54,10 @@ const SpecificPark = (props) => {
 
 	async function getUser() {
 		//console.log(loggedInUser);
+		const tempPark = props.location.state.parks.filter(
+			(park) => park.fullName === props.location.state.name
+		);
+		setCurrentPark(tempPark);
 		await axios
 			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {
@@ -68,7 +72,6 @@ const SpecificPark = (props) => {
 				const removedVisit = response.data.visitedParks.filter(
 					(parkV) => parkV.text === props.location.state.name
 				);
-				setFinished(true);
 				//console.log(removedVisit);
 				if (removedWish.length > 0) {
 					setWishlist(true);
@@ -76,6 +79,9 @@ const SpecificPark = (props) => {
 				if (removedVisit.length > 0) {
 					setVisitlist(true);
 				} else setVisitlist(false);
+			})
+			.then(() => {
+				setFinished(true);
 			});
 	}
 
