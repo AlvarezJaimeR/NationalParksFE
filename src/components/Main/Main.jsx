@@ -67,10 +67,10 @@ const Main = () => {
 		await axios
 			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {
-				console.log("specific user", response.data);
+				//onsole.log("specific user", response.data);
 				setSpecificUser(response.data);
-				console.log(response.data.wishListParks);
-				console.log(response.data.visitedParks);
+				//console.log(response.data.wishListParks);
+				//console.log(response.data.visitedParks);
 			})
 			.then(() => {
 				const filterWish = parks.filter((park) => {
@@ -80,7 +80,7 @@ const Main = () => {
 						}
 					}
 				});
-				console.log(filterWish);
+				//console.log(filterWish);
 				setFilteredWish(filterWish);
 				const filterVisit = parks.filter((park) => {
 					for (let i = 0; i < specificUser.visitedParks.length; i++) {
@@ -89,7 +89,7 @@ const Main = () => {
 						}
 					}
 				});
-				console.log(filterVisit);
+				//console.log(filterVisit);
 				setFilteredVisit(filterVisit);
 			});
 	}

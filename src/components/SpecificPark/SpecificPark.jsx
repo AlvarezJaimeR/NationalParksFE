@@ -40,7 +40,7 @@ const SpecificPark = (props) => {
 		//console.log(tempPark[0].longitude);
 		axios
 			.get(
-				`http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
+				`https://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
 			)
 			.then((response) => {
 				setWeather(response.data);
