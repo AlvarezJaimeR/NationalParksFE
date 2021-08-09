@@ -19,7 +19,7 @@ const RegisterPage = () => {
 		const random = Math.floor(Math.random() * imgNames.length);
 		setValues((values) => ({
 			...values,
-			icon: `http://localhost:3000/images/${imgNames[random]}.png`,
+			icon: `https://dry-coast-86029.herokuapp.com/images/${imgNames[random]}.png`,
 		}));
 	}, []);
 
