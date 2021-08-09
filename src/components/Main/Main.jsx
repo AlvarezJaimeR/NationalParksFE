@@ -58,12 +58,12 @@ const Main = () => {
 	};
 
 	useEffect(() => {
-		console.log("passing");
+		//console.log("passing");
 		getUser();
 	}, [parks]);
 
 	async function getUser() {
-		console.log(loggedInUser);
+		//console.log(loggedInUser);
 		await axios
 			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {

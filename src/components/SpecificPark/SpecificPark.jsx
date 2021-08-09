@@ -20,8 +20,8 @@ const SpecificPark = (props) => {
 
 	useEffect(
 		() => {
-			console.log("passing");
-			getWeather();
+			//console.log("passing");
+			//getWeather();
 			getUser();
 		},
 		[],
@@ -53,7 +53,7 @@ const SpecificPark = (props) => {
 	}
 
 	async function getUser() {
-		console.log(loggedInUser);
+		//console.log(loggedInUser);
 		await axios
 			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {
@@ -275,7 +275,7 @@ const SpecificPark = (props) => {
 							</p>
 						</div>
 					</div>
-					<div className="row">
+					{/* <div className="row">
 						<h5 className="col-2">Current weather:</h5>
 						<div className="col-2">
 							<p>Current local time: {weather.location.localtime}</p>
@@ -295,7 +295,7 @@ const SpecificPark = (props) => {
 							/>
 						</div>
 						<div className="col-2"></div>
-					</div>
+					</div> */}
 				</div>
 				<div className="container">
 					{visitlist === true ? (
