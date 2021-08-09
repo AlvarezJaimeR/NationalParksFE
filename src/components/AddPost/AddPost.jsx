@@ -3,6 +3,7 @@ import "./AddPost.css";
 import useForm from "../UseForm/UseForm";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
+import { ROOT_URL } from "../../apiRoot";
 
 const AddPost = (props) => {
 	const { values, handleChange, handleSubmit, clearValues } =
@@ -21,11 +22,7 @@ const AddPost = (props) => {
 			return;
 		}
 		await axios
-			.post(
-				`http://localhost:5000/api/posts/${loggedInUser._id}/post`,
-				addPost,
-				headers
-			)
+			.post(`${ROOT_URL}api/posts/${loggedInUser._id}/post`, addPost, headers)
 			.then((response) =>
 				setLoggedInUser({ ...loggedInUser, posts: response.data })
 			)

@@ -5,6 +5,7 @@ import "./LoginPage.css";
 import { useHistory } from "react-router-dom";
 import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
+import { ROOT_URL } from "../../apiRoot";
 
 const LoginPage = () => {
 	const { values, handleChange, handleSubmit } = UseForm(login);
@@ -13,7 +14,7 @@ const LoginPage = () => {
 
 	async function login() {
 		await axios
-			.post("http://localhost:5000/api/auth", values)
+			.post(`${ROOT_URL}api/auth`, values)
 			.then((response) => {
 				localStorage.setItem("token", response.data);
 				userHasAuthenticated(true);

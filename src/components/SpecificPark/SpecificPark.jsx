@@ -6,6 +6,7 @@ import PostFeed from "../PostFeed/PostFeed";
 import "./SpecificPark.css";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import { ROOT_URL } from "../../apiRoot";
 
 const SpecificPark = (props) => {
 	const { loggedInUser, headers } = useAppContext();
@@ -54,7 +55,7 @@ const SpecificPark = (props) => {
 	async function getUser() {
 		console.log(loggedInUser);
 		await axios
-			.get(`http://localhost:5000/api/users/${loggedInUser._id}`)
+			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {
 				console.log("specific user", response.data);
 				setSpecificUser(response.data);
@@ -88,7 +89,7 @@ const SpecificPark = (props) => {
 				console.log(wishlistPark);
 				axios
 					.put(
-						`http://localhost:5000/api/users/${loggedInUser._id}/wishlist`,
+						`${ROOT_URL}api/users/${loggedInUser._id}/wishlist`,
 						wishlistPark,
 						headers
 					)
@@ -111,7 +112,7 @@ const SpecificPark = (props) => {
 				console.log(visitedPark);
 				axios
 					.put(
-						`http://localhost:5000/api/users/${loggedInUser._id}/visited/${visitedPark.text}`,
+						`${ROOT_URL}api/users/${loggedInUser._id}/visited/${visitedPark.text}`,
 						visitedPark,
 						headers
 					)
@@ -134,7 +135,7 @@ const SpecificPark = (props) => {
 				console.log(wish);
 				axios
 					.put(
-						`http://localhost:5000/api/users/${loggedInUser._id}/${wish[0].text}`,
+						`${ROOT_URL}api/users/${loggedInUser._id}/${wish[0].text}`,
 						wish,
 						headers
 					)
@@ -157,7 +158,7 @@ const SpecificPark = (props) => {
 				console.log(visit);
 				axios
 					.put(
-						`http://localhost:5000/api/users/${loggedInUser._id}/${visit[0].text}/visit`,
+						`${ROOT_URL}api/users/${loggedInUser._id}/${visit[0].text}/visit`,
 						visit,
 						headers
 					)

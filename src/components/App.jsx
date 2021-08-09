@@ -11,6 +11,7 @@ import SpecificTraveler from "./SpecificTraveler/SpecificTraveler";
 import { AppContext } from "../libs/contextLib";
 import EditPost from "./EditPost/EditPost";
 import axios from "axios";
+import { ROOT_URL } from "../apiRoot";
 
 function App() {
 	const [loggedInUser, setLoggedInUser] = useState();
@@ -43,7 +44,7 @@ function App() {
 	}, [jwt]);
 
 	async function onLoad() {
-		await axios.get("http://localhost:5000/api/users").then((response) => {
+		await axios.get(`${ROOT_URL}api/users`).then((response) => {
 			console.log("all users", response.data);
 			setTotalUsers(response.data);
 		});

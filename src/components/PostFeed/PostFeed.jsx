@@ -4,6 +4,7 @@ import { useAppContext } from "../../libs/contextLib";
 import axios from "axios";
 import dateFormat from "dateformat";
 import { Link } from "react-router-dom";
+import { ROOT_URL } from "../../apiRoot";
 
 const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
@@ -24,7 +25,7 @@ const PostFeed = (props) => {
 			case "delete":
 				axios
 					.put(
-						`http://localhost:5000/api/posts/${loggedInUser._id}/delete/${posts[post]._id}`,
+						`${ROOT_URL}api/posts/${loggedInUser._id}/delete/${posts[post]._id}`,
 						posts,
 						headers
 					)
@@ -43,16 +44,14 @@ const PostFeed = (props) => {
 	};
 
 	useEffect(() => {
-		axios
-			.get(`http://localhost:5000/api/posts/${loggedInUser._id}`)
-			.then((response) => {
-				//console.log(response.data);
-				const filteredPosts = response.data.filter(
-					(post) => post.parkName === props.parkName
-				);
-				//console.log(filteredPosts);
-				setPosts(filteredPosts);
-			});
+		axios.get(`${ROOT_URL}api/posts/${loggedInUser._id}`).then((response) => {
+			//console.log(response.data);
+			const filteredPosts = response.data.filter(
+				(post) => post.parkName === props.parkName
+			);
+			//console.log(filteredPosts);
+			setPosts(filteredPosts);
+		});
 	}, [loggedInUser, update]);
 
 	return posts.length === 0 ? (

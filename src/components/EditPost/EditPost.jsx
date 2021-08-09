@@ -6,6 +6,7 @@ import { useAppContext } from "../../libs/contextLib";
 import UseForm from "../UseForm/UseForm";
 import { Link } from "react-router-dom";
 import "./EditPost.css";
+import { ROOT_URL } from "../../apiRoot";
 
 function EditPost(props) {
 	console.log(props.location.state);
@@ -20,7 +21,7 @@ function EditPost(props) {
 
 		await axios
 			.put(
-				`http://localhost:5000/api/posts/${loggedInUser._id}/edit/${props.location.state.post._id}`,
+				`${ROOT_URL}api/posts/${loggedInUser._id}/edit/${props.location.state.post._id}`,
 				values,
 				headers
 			)

@@ -6,6 +6,7 @@ import "./Main.css";
 import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
 import dateFormat from "dateformat";
+import { ROOT_URL } from "../../apiRoot";
 
 const Main = () => {
 	const { loggedInUser, parks } = useAppContext();
@@ -64,7 +65,7 @@ const Main = () => {
 	async function getUser() {
 		console.log(loggedInUser);
 		await axios
-			.get(`http://localhost:5000/api/users/${loggedInUser._id}`)
+			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {
 				console.log("specific user", response.data);
 				setSpecificUser(response.data);

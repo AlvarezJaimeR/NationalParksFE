@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ReactLoading from "react-loading";
 
 const Travelers = () => {
-	const { totalUsers, setTotalUsers, loggedInUser } = useAppContext();
+	const { totalUsers, loggedInUser } = useAppContext();
 	console.log("all users", totalUsers);
 	console.log("logged in user", loggedInUser);
 	const [otherUsers, setOtherUsers] = useState([]);
