@@ -21,34 +21,34 @@ const Main = () => {
 	const buttonClick = (event) => {
 		switch (event.target.name) {
 			case "sortAZ":
-				console.log("parks AZ", parks);
+				//console.log("parks AZ", parks);
 				parks.sort((a, b) => (a.name > b.name ? 1 : -1));
-				console.log(parks);
+				//console.log(parks);
 				setSort(!sort);
 				break;
 			case "sortZA":
-				console.log("parks ZA", parks);
+				//console.log("parks ZA", parks);
 				parks.sort((a, b) => (a.name > b.name ? 1 : -1)).reverse();
 				setSort(!sort);
 				break;
 			case "state":
-				console.log("state", parks);
+				//console.log("state", parks);
 				parks.sort((a, b) => (a.states > b.states ? 1 : -1));
-				console.log(parks);
+				//console.log(parks);
 				setSort(!sort);
 				break;
 			case "filter all":
-				console.log("filter all");
+				//console.log("filter all");
 				setFilterWishLogic(false);
 				setFilterVisitLogic(false);
 				break;
 			case "filter wishlist":
-				console.log("filter wishlist");
+				//console.log("filter wishlist");
 				setFilterWishLogic(true);
 				setFilterVisitLogic(false);
 				break;
 			case "filter visited":
-				console.log("filter visted");
+				//console.log("filter visted");
 				setFilterWishLogic(false);
 				setFilterVisitLogic(true);
 				break;

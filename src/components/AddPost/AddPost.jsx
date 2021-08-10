@@ -11,11 +11,11 @@ const AddPost = (props) => {
 	const { loggedInUser, setLoggedInUser, headers } = useAppContext();
 
 	async function submitPost() {
-		console.log(values);
-		console.log(props);
+		//console.log(values);
+		//console.log(props);
 
 		const addPost = { ...values, parkName: props.parkName };
-		console.log(addPost);
+		//console.log(addPost);
 
 		if (addPost.rating == null) {
 			alert("Please choose a rating for this park review!");
@@ -27,8 +27,8 @@ const AddPost = (props) => {
 				setLoggedInUser({ ...loggedInUser, posts: response.data })
 			)
 			.catch((error) => {
-				console.log(error);
-				console.log(error.response.data);
+				//console.log(error);
+				//console.log(error.response.data);
 			});
 		clearValues();
 	}
