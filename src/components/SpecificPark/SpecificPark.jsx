@@ -7,6 +7,7 @@ import "./SpecificPark.css";
 import axios from "axios";
 import ReactLoading from "react-loading";
 import { ROOT_URL } from "../../apiRoot";
+import { useHistory } from "react-router-dom";
 
 const SpecificPark = (props) => {
 	const { loggedInUser, headers } = useAppContext();
@@ -17,10 +18,10 @@ const SpecificPark = (props) => {
 	const [currentPark, setCurrentPark] = useState([]);
 	const [weather, setWeather] = useState({});
 	const [finished, setFinished] = useState(false);
+	const history = useHistory();
 
 	useEffect(
 		() => {
-			//console.log("passing");
 			//getWeather();
 			getUser();
 		},
@@ -181,6 +182,9 @@ const SpecificPark = (props) => {
 						//console.log(err.response.data);
 					});
 				break;
+			case "return":
+				history.push("/allParks");
+				break;
 			default:
 				break;
 		}
@@ -196,6 +200,12 @@ const SpecificPark = (props) => {
 					alt={currentPark[0].images[0].altText}
 					src={currentPark[0].images[0].url}
 				/>
+				<button
+					name="return"
+					className="btn-list btn btn-outline-secondary"
+					onClick={(event) => buttonClick(event)}>
+					Return to Park main page.
+				</button>
 				{visitlist === false ? (
 					<div className="btn-list">
 						{wishlist === false ? (
@@ -213,7 +223,6 @@ const SpecificPark = (props) => {
 								Remove from wish list!
 							</button>
 						)}
-
 						<button
 							name="visited"
 							onClick={(event) => buttonClick(event)}

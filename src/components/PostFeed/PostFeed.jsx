@@ -13,9 +13,9 @@ const PostFeed = (props) => {
 	//console.log("post feed props", props);
 
 	const buttonClick = (event, post) => {
-		console.log("button", event);
-		console.log("button", post);
-		console.log("button", posts);
+		//console.log("button", event);
+		//console.log("button", post);
+		//console.log("button", posts);
 
 		switch (event.target.name) {
 			case "edit":

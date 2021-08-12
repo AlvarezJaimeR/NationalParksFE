@@ -373,9 +373,9 @@ const Main = () => {
 						))}
 					</div>
 				</div>
-			) : specificUser.posts.length < 0 && filterWishLogic === false ? (
+			) : specificUser.posts.length == 0 && filterWishLogic === false ? (
 				<div>
-					<h3>
+					<h3 className="center-text">
 						Currently no posts on any of the visited parks or there are
 						currently no visited parks.
 					</h3>
