@@ -352,7 +352,7 @@ const Main = () => {
 					)}
 				</div>
 			)}
-			{specificUser.posts.length > 0 ? (
+			{specificUser.posts.length > 0 && filterWishLogic === false ? (
 				<div className="container">
 					<div className="row">
 						<div className="col-5"></div>
@@ -373,13 +373,15 @@ const Main = () => {
 						))}
 					</div>
 				</div>
-			) : (
+			) : specificUser.posts.length < 0 && filterWishLogic === false ? (
 				<div>
 					<h3>
 						Currently no posts on any of the visited parks or there are
 						currently no visited parks.
 					</h3>
 				</div>
+			) : (
+				<div></div>
 			)}
 		</div>
 	) : (
