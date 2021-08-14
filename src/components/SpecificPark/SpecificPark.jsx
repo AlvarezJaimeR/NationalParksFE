@@ -182,9 +182,6 @@ const SpecificPark = (props) => {
 						//console.log(err.response.data);
 					});
 				break;
-			case "return":
-				history.push("/allParks");
-				break;
 			default:
 				break;
 		}
@@ -200,14 +197,14 @@ const SpecificPark = (props) => {
 					alt={currentPark[0].images[0].altText}
 					src={currentPark[0].images[0].url}
 				/>
-				<button
-					name="return"
-					className="btn-list btn btn-outline-secondary"
-					onClick={(event) => buttonClick(event)}>
-					Return to Park main page.
-				</button>
 				{visitlist === false ? (
 					<div className="btn-list">
+						<a
+							name="return"
+							className="btn-list btn btn-outline-dark"
+							href="/allParks">
+							Return to Park main page.
+						</a>
 						{wishlist === false ? (
 							<button
 								name="wishlist"
@@ -231,13 +228,21 @@ const SpecificPark = (props) => {
 						</button>
 					</div>
 				) : (
-					<div className="btn-visit">
-						<button
-							name="visited remove"
-							onClick={(event) => buttonClick(event)}
-							className="btn btn-outline-dark ">
-							Remove from visited list!
-						</button>
+					<div className="btn-list">
+						<a
+							name="return"
+							className="btn-list btn btn-outline-dark"
+							href="/allParks">
+							Return to Park main page.
+						</a>
+						<div className="btn-visit">
+							<button
+								name="visited remove"
+								onClick={(event) => buttonClick(event)}
+								className="btn btn-outline-dark ">
+								Remove from visited list!
+							</button>
+						</div>
 					</div>
 				)}
 

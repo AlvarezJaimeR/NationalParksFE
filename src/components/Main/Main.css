@@ -5,6 +5,10 @@
 	display: flex;
 }
 
+.all-cards {
+	justify-content: center;
+}
+
 .park-visit-picture {
 	display: block;
 	margin-left: auto;

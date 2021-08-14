@@ -12,10 +12,10 @@ const Main = () => {
 	const { loggedInUser, parks } = useAppContext();
 	const [sort, setSort] = useState(false);
 	const [specificUser, setSpecificUser] = useState();
-	const [filteredWish, setFilteredWish] = useState();
+	const [filteredWish, setFilteredWish] = useState([]);
 	const [filterWishLogic, setFilterWishLogic] = useState(false);
 	const [filterVisitLogic, setFilterVisitLogic] = useState(false);
-	const [filteredVisit, setFilteredVisit] = useState(false);
+	const [filteredVisit, setFilteredVisit] = useState([]);
 	const [searchName, setSearchName] = useState("");
 
 	const buttonClick = (event) => {
@@ -58,39 +58,42 @@ const Main = () => {
 	};
 
 	useEffect(() => {
-		//console.log("passing");
 		getUser();
+	}, []);
+
+	useEffect(() => {
+		getInfo();
 	}, [parks]);
+
+	function getInfo() {
+		//console.log(specificUser);
+		const filterWish = parks.filter((park) => {
+			for (let i = 0; i < specificUser.wishListParks.length; i++) {
+				if (park.fullName === specificUser.wishListParks[i].text) {
+					return park;
+				}
+			}
+		});
+		//console.log(filterWish);
+		setFilteredWish(filterWish);
+		const filterVisit = parks.filter((park) => {
+			for (let i = 0; i < specificUser.visitedParks.length; i++) {
+				if (park.fullName === specificUser.visitedParks[i].text) {
+					return park;
+				}
+			}
+		});
+		//console.log(filterVisit);
+		setFilteredVisit(filterVisit);
+	}
 
 	async function getUser() {
 		//console.log(loggedInUser);
 		await axios
 			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {
-				//onsole.log("specific user", response.data);
+				console.log("specific user", response.data);
 				setSpecificUser(response.data);
-				//console.log(response.data.wishListParks);
-				//console.log(response.data.visitedParks);
-			})
-			.then(() => {
-				const filterWish = parks.filter((park) => {
-					for (let i = 0; i < specificUser.wishListParks.length; i++) {
-						if (park.fullName === specificUser.wishListParks[i].text) {
-							return park;
-						}
-					}
-				});
-				//console.log(filterWish);
-				setFilteredWish(filterWish);
-				const filterVisit = parks.filter((park) => {
-					for (let i = 0; i < specificUser.visitedParks.length; i++) {
-						if (park.fullName === specificUser.visitedParks[i].text) {
-							return park;
-						}
-					}
-				});
-				//console.log(filterVisit);
-				setFilteredVisit(filterVisit);
 			});
 	}
 
@@ -165,51 +168,47 @@ const Main = () => {
 				</ul>
 			</div>
 			{filterVisitLogic === true ? (
-				<div>
-					<div className="container">
-						<div className="row">
-							{filteredVisit
-								.filter((park) => {
-									if (searchName === "") {
-										return park;
-									} else if (
-										park.fullName
-											.toLowerCase()
-											.includes(searchName.toLowerCase())
-									) {
-										return park;
-									}
-								})
-								.map((park, index) => (
-									<div
-										key={index}
-										className="card-all visit"
-										style={{ height: "13em", width: "11em" }}>
-										<Link
-											to={{
-												pathname: "/specificPark",
-												state: {
-													parks: parks,
-													name: park.fullName,
-												},
-											}}>
-											<img
-												className="park-visit-picture"
-												alt={park.images[0].altText}
-												src={park.images[0].url}
-											/>
-											<p>{park.name + ", " + park.states}</p>
-										</Link>
-									</div>
-								))}
-						</div>
+				<div className="container">
+					<div className="row all-cards">
+						{filteredVisit
+							.filter((park) => {
+								if (searchName === "") {
+									return park;
+								} else if (
+									park.fullName.toLowerCase().includes(searchName.toLowerCase())
+								) {
+									return park;
+								}
+							})
+							.map((park, index) => (
+								<div
+									key={index}
+									className="card-all visit"
+									style={{ height: "13em", width: "11em" }}>
+									<Link
+										to={{
+											pathname: "/specificPark",
+											state: {
+												parks: parks,
+												name: park.fullName,
+											},
+										}}>
+										<img
+											className="park-visit-picture"
+											alt={park.images[0].altText}
+											src={park.images[0].url}
+										/>
+										<p>{park.name + ", " + park.states}</p>
+									</Link>
+								</div>
+							))}
 					</div>
 				</div>
 			) : (
 				<div>
 					{filterWishLogic === true && filterVisitLogic === false ? (
 						<div className="container">
-							<div className="row">
+							<div className="row all-cards">
 								{filteredWish
 									.filter((park) => {
 										if (searchName === "") {
@@ -251,7 +250,7 @@ const Main = () => {
 						</div>
 					) : (
 						<div className="container">
-							<div className="row">
+							<div className="row all-cards">
 								{parks
 									.filter((park) => {
 										if (searchName === "") {
