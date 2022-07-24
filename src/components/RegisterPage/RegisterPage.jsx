@@ -24,23 +24,15 @@ const RegisterPage = () => {
 	}, []);
 
 	function highlightImage(name, index) {
-		//console.log(name);
-		//console.log("clicked index:", index);
 		setSelectedItem(index);
-		//console.log(selectedItem);
-		//console.log(values);
 		setValues((values) => ({
 			...values,
 			icon: name.target.src,
 		}));
-		//console.log(values);
 	}
 
 	async function register() {
-		//console.log("Hit register Button");
 		const { confirmPassword, ...users } = values;
-		//console.log(values);
-		//console.log(users);
 
 		await axios
 			.post(`${ROOT_URL}api/users/`, users)
@@ -50,10 +42,7 @@ const RegisterPage = () => {
 				setLoggedInUser(response.data);
 				history.push("/");
 			})
-			.catch((error) => {
-				//console.log(error);
-				//console.log(error.response.data);
-			});
+			.catch((error) => {});
 	}
 
 	return (

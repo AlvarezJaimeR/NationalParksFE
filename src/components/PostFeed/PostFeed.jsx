@@ -10,16 +10,10 @@ const PostFeed = (props) => {
 	const { loggedInUser, headers } = useAppContext();
 	const [posts, setPosts] = useState([]);
 	const [update, setUpdate] = useState(false);
-	//console.log("post feed props", props);
 
 	const buttonClick = (event, post) => {
-		//console.log("button", event);
-		//console.log("button", post);
-		//console.log("button", posts);
-
 		switch (event.target.name) {
 			case "edit":
-				console.log("edit");
 				setUpdate(!update);
 				break;
 			case "delete":
@@ -30,13 +24,9 @@ const PostFeed = (props) => {
 						headers
 					)
 					.then((res) => {
-						//console.log(res);
 						setUpdate(!update);
 					})
-					.catch((err) => {
-						console.log(err);
-						console.log(err.response.data);
-					});
+					.catch((err) => {});
 				break;
 			default:
 				break;
@@ -45,11 +35,9 @@ const PostFeed = (props) => {
 
 	useEffect(() => {
 		axios.get(`${ROOT_URL}api/posts/${loggedInUser._id}`).then((response) => {
-			//console.log(response.data);
 			const filteredPosts = response.data.filter(
 				(post) => post.parkName === props.parkName
 			);
-			//console.log(filteredPosts);
 			setPosts(filteredPosts);
 		});
 	}, [loggedInUser, update]);

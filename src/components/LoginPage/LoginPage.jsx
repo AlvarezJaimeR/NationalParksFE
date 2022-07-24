@@ -22,7 +22,6 @@ const LoginPage = () => {
 				history.push("/");
 			})
 			.catch((error) => {
-				console.log(error);
 				alert(error.response.data);
 			});
 	}

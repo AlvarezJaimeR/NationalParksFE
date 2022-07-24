@@ -7,8 +7,6 @@ import ReactLoading from "react-loading";
 
 const Travelers = () => {
 	const { totalUsers, loggedInUser } = useAppContext();
-	//console.log("all users", totalUsers);
-	//console.log("logged in user", loggedInUser);
 	const [otherUsers, setOtherUsers] = useState([]);
 
 	useEffect(() => {
@@ -17,7 +15,6 @@ const Travelers = () => {
 
 	function filterUser() {
 		const tempUser = totalUsers.filter((user) => user._id != loggedInUser._id);
-		//console.log(tempUser);
 		setOtherUsers(tempUser);
 	}
 

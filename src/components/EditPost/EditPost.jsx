@@ -9,7 +9,6 @@ import "./EditPost.css";
 import { ROOT_URL } from "../../apiRoot";
 
 function EditPost(props) {
-	//console.log(props.location.state);
 	const { loggedInUser, setLoggedInUser, headers, parks } = useAppContext();
 	const { values, handleChange, handleSubmit } = UseForm(editData);
 
@@ -27,12 +26,9 @@ function EditPost(props) {
 			)
 			.then((response) => {
 				alert("Post information updated!");
-				//console.log(response);
 				setLoggedInUser({ ...loggedInUser, posts: response.data });
 			})
-			.catch((error) => {
-				//console.log(error);
-			});
+			.catch((error) => {});
 	}
 
 	return (

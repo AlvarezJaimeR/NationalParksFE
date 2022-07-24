@@ -35,10 +35,7 @@ const SpecificPark = (props) => {
 		const tempPark = props.location.state.parks.filter(
 			(park) => park.fullName === props.location.state.name
 		);
-		//console.log("filtered park", tempPark);
 		setCurrentPark(tempPark);
-		//console.log(tempPark[0].latitude);
-		//console.log(tempPark[0].longitude);
 		axios
 			.get(
 				`https://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WTHR_API_KEY}&query=${tempPark[0].latitude},${tempPark[0].longitude}&units=f`
@@ -47,14 +44,10 @@ const SpecificPark = (props) => {
 				setWeather(response.data);
 				setFinished(true);
 			})
-			.catch((error) => {
-				//console.log(error);
-				//alert(error.response.data);
-			});
+			.catch((error) => {});
 	}
 
 	async function getUser() {
-		//console.log(loggedInUser);
 		const tempPark = props.location.state.parks.filter(
 			(park) => park.fullName === props.location.state.name
 		);
@@ -62,18 +55,13 @@ const SpecificPark = (props) => {
 		await axios
 			.get(`${ROOT_URL}api/users/${loggedInUser._id}`)
 			.then((response) => {
-				//console.log("specific user", response.data);
 				setSpecificUser(response.data);
-				//console.log(response.data.wishListParks);
-				//console.log(response.data.visitedParks);
 				const removedWish = response.data.wishListParks.filter(
 					(park) => park.text === props.location.state.name
 				);
-				//console.log(removedWish);
 				const removedVisit = response.data.visitedParks.filter(
 					(parkV) => parkV.text === props.location.state.name
 				);
-				//console.log(removedVisit);
 				if (removedWish.length > 0) {
 					setWishlist(true);
 				} else setWishlist(false);
@@ -87,14 +75,11 @@ const SpecificPark = (props) => {
 	}
 
 	const buttonClick = (event) => {
-		//console.log("button", event.target.name);
 		switch (event.target.name) {
 			case "wishlist":
-				//console.log("wishlist!");
 				const wishlistPark = {
 					text: props.location.state.name,
 				};
-				//console.log(wishlistPark);
 				axios
 					.put(
 						`${ROOT_URL}api/users/${loggedInUser._id}/wishlist`,
@@ -102,22 +87,16 @@ const SpecificPark = (props) => {
 						headers
 					)
 					.then((res) => {
-						//console.log(res);
 						setSpecificUser(res.data);
 						setWishlist(true);
 						setUpdate(!update);
 					})
-					.catch((err) => {
-						//console.log(err);
-						//console.log(err.response.data);
-					});
+					.catch((err) => {});
 				break;
 			case "visited":
-				//console.log("visited!");
 				const visitedPark = {
 					text: props.location.state.name,
 				};
-				//console.log(visitedPark);
 				axios
 					.put(
 						`${ROOT_URL}api/users/${loggedInUser._id}/visited/${visitedPark.text}`,
@@ -125,22 +104,16 @@ const SpecificPark = (props) => {
 						headers
 					)
 					.then((res) => {
-						//console.log(res);
 						setSpecificUser(res.data);
 						setVisitlist(true);
 						setUpdate(!update);
 					})
-					.catch((err) => {
-						//console.log(err);
-						//console.log(err.response.data);
-					});
+					.catch((err) => {});
 				break;
 			case "wishlist remove":
-				//console.log("remove wishlist!");
 				const wish = specificUser.wishListParks.filter(
 					(park) => park.text === props.location.state.name
 				);
-				//console.log(wish);
 				axios
 					.put(
 						`${ROOT_URL}api/users/${loggedInUser._id}/${wish[0].text}`,
@@ -148,22 +121,15 @@ const SpecificPark = (props) => {
 						headers
 					)
 					.then((res) => {
-						//console.log(res);
 						setWishlist(false);
 						setUpdate(!update);
 					})
-					.catch((err) => {
-						//console.log(err);
-						//console.log(err.response.data);
-					});
+					.catch((err) => {});
 				break;
 			case "visited remove":
-				//console.log("remove visited list");
-				//console.log(specificUser);
 				const visit = specificUser.visitedParks.filter(
 					(park) => park.text === props.location.state.name
 				);
-				//console.log(visit);
 				axios
 					.put(
 						`${ROOT_URL}api/users/${loggedInUser._id}/${visit[0].text}/visit`,
@@ -171,16 +137,12 @@ const SpecificPark = (props) => {
 						headers
 					)
 					.then((res) => {
-						//console.log(res);
 						setSpecificUser(res.data);
 						setVisitlist(false);
 						setUpdate(!update);
 						setWishlist(false);
 					})
-					.catch((err) => {
-						//console.log(err);
-						//console.log(err.response.data);
-					});
+					.catch((err) => {});
 				break;
 			default:
 				break;

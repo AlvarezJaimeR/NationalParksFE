@@ -8,13 +8,10 @@ const NavBar = (props) => {
 
 	function logoutButton() {
 		try {
-			console.log("logout button!");
 			localStorage.removeItem("token");
 			userHasAuthenticated(false);
 			history.push("/");
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	}
 
 	return (

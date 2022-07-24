@@ -6,7 +6,6 @@ export const getPost = (userId) => {
         await axios
         .get(`http://localhost:5000/api/posts/${userId}`)
         .then(post => {
-            console.log(post);
             dispatch ({
                 type: GET_POST,
                 payload: post.data
@@ -22,7 +21,6 @@ export const newPost = (userId, post) => {
             text: post.text
         })
         .then(post => {
-            console.log(post);
             dispatch ({
                 type: NEW_POST,
                 payload: post.data
